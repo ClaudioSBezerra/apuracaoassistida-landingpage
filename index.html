@@ -82,7 +82,7 @@ svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .btn-primary:hover::before,.btn-hero:hover::before{left:100%}
 .btn-primary:hover,.btn-hero:hover{transform:translateY(-2px)}
 /* cartões de vidro com brilho no hover */
-.card,.step,.feat,details,form,.videos-empty{background:rgba(14,26,42,.6);border:1px solid var(--border);box-shadow:0 8px 32px rgba(0,0,0,.3),0 0 0 1px rgba(255,255,255,.03)}
+.card,.step,.feat,details,form{background:rgba(14,26,42,.6);border:1px solid var(--border);box-shadow:0 8px 32px rgba(0,0,0,.3),0 0 0 1px rgba(255,255,255,.03)}
 .card,.step,.feat{transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s var(--ease)}
 .card:hover,.step:hover,.feat:hover{transform:translateY(-6px);border-color:var(--border-teal);box-shadow:0 25px 80px rgba(0,0,0,.4),0 0 0 1px rgba(255,255,255,.08),0 0 60px rgba(20,184,166,.2)}
 
@@ -206,9 +206,49 @@ h2{font-size:38px;font-weight:800;letter-spacing:-1px;line-height:1.15;color:#ff
 .plans-lead strong{color:#fff;font-weight:700;text-shadow:0 0 18px rgba(20,184,166,.45)}
 .plans-note{font-size:14px;color:var(--gray);margin-top:26px}
 
-/* vídeos */
-.videos-empty{border:1px dashed var(--border-teal);border-radius:16px;padding:36px;text-align:center;color:var(--gray)}
-.videos-empty a{color:var(--primary-soft);font-weight:600}
+
+/* resumo CBS (mockup com gráficos) */
+.resumo-mock{max-width:1100px;margin:0 auto}
+.rs{padding:16px}
+.rs-head{margin-bottom:14px}
+.rs-head b{display:block;font-size:18px;color:#0f172a;letter-spacing:-.3px}
+.rs-head small{color:#64748b;font-size:11px}
+.rs-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.rs-charts{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:12px}
+.rs-card{border:1px solid #e2e8f0;border-radius:10px;padding:12px 14px;background:#fff;min-width:0}
+.rs-card h4{font-size:12px;font-weight:700;color:#0f172a;margin-bottom:10px}
+.rs-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rs-nums small{display:block;font-size:9px;color:#64748b;text-transform:uppercase;letter-spacing:.4px}
+.rs-nums b{display:block;font-size:13px;margin-top:2px;white-space:nowrap}
+.rs-nums em{display:block;font-style:normal;font-size:9px;color:#94a3b8;margin-top:2px}
+.c-red{color:#dc2626}.c-mut{color:#64748b}.c-org{color:#ea580c}.c-grn{color:#16a34a}.c-blu{color:#2563eb}
+.chart{display:flex;align-items:stretch;gap:6px;height:160px;margin-bottom:8px}
+.chart .col{flex:1;display:flex;flex-direction:column;min-width:0}
+.chart .bars{flex:1;display:flex;align-items:flex-end;justify-content:center;gap:2px;border-bottom:1px solid #e2e8f0;background:repeating-linear-gradient(to top,transparent 0,transparent 33px,#f1f5f9 33px,#f1f5f9 34px)}
+.chart .col span{font-size:9px;color:#94a3b8;text-align:center;padding-top:4px;white-space:nowrap}
+.bar{display:block;width:100%;max-width:26px;height:var(--h);border-radius:4px 4px 0 0;transform-origin:bottom;transition:transform .9s cubic-bezier(.2,.8,.2,1),filter .2s}
+.bar:hover{filter:brightness(1.12)}
+.b-red,.b-rfb{background:#dc2626}.b-prop{background:#2563eb}.b-org{background:#ea580c}.b-grn{background:#16a34a}
+.rs-anim .bar{transform:scaleY(0)}
+.rs-anim.visivel .bar{transform:scaleY(1)}
+.rs-anim.visivel .col:nth-child(2) .bar{transition-delay:.08s}
+.rs-anim.visivel .col:nth-child(3) .bar{transition-delay:.16s}
+.rs-anim.visivel .col:nth-child(4) .bar{transition-delay:.24s}
+.rs-anim.visivel .col:nth-child(5) .bar{transition-delay:.32s}
+.rs-anim.visivel .col:nth-child(6) .bar{transition-delay:.40s}
+.rs-leg{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:10px;color:#64748b}
+.rs-leg span{display:inline-flex;align-items:center;gap:5px}
+.rs-leg i{width:10px;height:10px;border-radius:2px;display:inline-block}
+@media (max-width:1024px){.rs-charts{grid-template-columns:1fr 1fr}.rs-charts .rs-card:first-child{grid-column:1/-1}}
+@media (max-width:760px){
+  .rs{padding:10px}
+  .rs-stats,.rs-charts{grid-template-columns:1fr}
+  .rs-charts .rs-card:first-child{grid-column:auto}
+  .rs-nums b{font-size:12px}
+  .rs-nums small{font-size:8px}
+  .chart{height:130px}
+}
+@media (prefers-reduced-motion:reduce){.rs-anim .bar{transform:none;transition:none}}
 
 /* faq */
 .faq{max-width:860px}
@@ -477,12 +517,52 @@ footer .logo-text{color:#fff}
   </div>
 </section>
 
-<section id="videos">
+<section id="resumo">
   <div class="wrap">
-    <p class="eyebrow">Vídeos</p>
-    <h2>A reforma explicada sem complicação.</h2>
-    <p class="lead" style="margin-bottom:0">Uma série curta sobre apuração assistida, crédito da CBS e do IBS e split payment.</p>
-    <!-- Quando os vídeos estiverem no YouTube, colocar aqui os iframes youtube-nocookie.com. -->
+    <p class="eyebrow">Visão do ano</p>
+    <h2>Mês a mês, a sua conta ao lado da conta do governo.</h2>
+    <p class="lead">O Resumo CBS mostra a série mensal de débitos, créditos e saldo em aberto. Um clique em qualquer barra abre as notas daquele mês.</p>
+    <!-- Seção Vídeos: quando os vídeos estiverem no YouTube, voltar com iframes youtube-nocookie.com. -->
+    <div class="mockup-wrap resumo-mock" aria-label="Exemplo da tela Resumo CBS com dados fictícios">
+      <div class="mockup-bar"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="mockup-url">suaempresa.apuracaoassistida.ia.br/rfb/resumo-cbs</span></div>
+      <div class="screen rs">
+        <div class="rs-head"><b>Resumo CBS</b><small>Série mensal de apuração CBS — débitos, créditos e comparação com a base própria.</small></div>
+        <div class="rs-stats">
+          <div class="rs-card">
+            <h4>Débitos processados</h4>
+            <div class="rs-nums">
+              <div><small>Mês corrente</small><b class="c-red">R$ 610.418,22</b><em>11/2026</em></div>
+              <div><small>Mês anterior</small><b class="c-mut">R$ 1.231.905,12</b><em>10/2026</em></div>
+              <div><small>Débito vencido</small><b class="c-org">R$ 48.215,90</b><em>Períodos fechados</em></div>
+            </div>
+          </div>
+          <div class="rs-card">
+            <h4>Créditos processados</h4>
+            <div class="rs-nums">
+              <div><small>Mês corrente</small><b class="c-grn">R$ 330.126,44</b><em>11/2026</em></div>
+              <div><small>Mês anterior</small><b class="c-mut">R$ 688.540,03</b><em>10/2026</em></div>
+              <div><small>Crédito não utilizado</small><b class="c-blu">R$ 77.335,26</b><em>Mês corrente</em></div>
+            </div>
+          </div>
+        </div>
+        <div class="rs-charts">
+          <div class="rs-card">
+            <h4>Resumo mensal — CBS AA x Base própria</h4>
+            <div class="chart"><div class="col"><div class="bars"><i class="bar b-rfb" style="--h:90.8%" title="06/26 RFB: R$ 1.180 mil"></i><i class="bar b-prop" style="--h:91.7%" title="06/26 própria: R$ 1.192 mil"></i></div><span>06/26</span></div><div class="col"><div class="bars"><i class="bar b-rfb" style="--h:93.5%" title="07/26 RFB: R$ 1.215 mil"></i><i class="bar b-prop" style="--h:93.9%" title="07/26 própria: R$ 1.221 mil"></i></div><span>07/26</span></div><div class="col"><div class="bars"><i class="bar b-rfb" style="--h:89.5%" title="08/26 RFB: R$ 1.164 mil"></i><i class="bar b-prop" style="--h:90.0%" title="08/26 própria: R$ 1.170 mil"></i></div><span>08/26</span></div><div class="col"><div class="bars"><i class="bar b-rfb" style="--h:95.4%" title="09/26 RFB: R$ 1.240 mil"></i><i class="bar b-prop" style="--h:97.1%" title="09/26 própria: R$ 1.262 mil"></i></div><span>09/26</span></div><div class="col"><div class="bars"><i class="bar b-rfb" style="--h:94.8%" title="10/26 RFB: R$ 1.232 mil"></i><i class="bar b-prop" style="--h:96.0%" title="10/26 própria: R$ 1.248 mil"></i></div><span>10/26</span></div><div class="col"><div class="bars"><i class="bar b-rfb" style="--h:46.9%" title="11/26 RFB: R$ 610 mil"></i><i class="bar b-prop" style="--h:47.5%" title="11/26 própria: R$ 618 mil"></i></div><span>11/26</span></div></div>
+            <div class="rs-leg"><span><i class="b-rfb"></i>CBS total (RFB)</span><span><i class="b-prop"></i>CBS declarado por nós</span></div>
+          </div>
+          <div class="rs-card">
+            <h4>Débito não extinto</h4>
+            <div class="chart"><div class="col"><div class="bars"><i class="bar b-org" style="--h:75.8%" title="06/26: R$ 182 mil"></i></div><span>06/26</span></div><div class="col"><div class="bars"><i class="bar b-org" style="--h:81.7%" title="07/26: R$ 196 mil"></i></div><span>07/26</span></div><div class="col"><div class="bars"><i class="bar b-org" style="--h:71.2%" title="08/26: R$ 171 mil"></i></div><span>08/26</span></div><div class="col"><div class="bars"><i class="bar b-org" style="--h:87.5%" title="09/26: R$ 210 mil"></i></div><span>09/26</span></div><div class="col"><div class="bars"><i class="bar b-org" style="--h:93.3%" title="10/26: R$ 224 mil"></i></div><span>10/26</span></div><div class="col"><div class="bars"><i class="bar b-org" style="--h:40.8%" title="11/26: R$ 98 mil"></i></div><span>11/26</span></div></div>
+          </div>
+          <div class="rs-card">
+            <h4>Minhas apurações</h4>
+            <div class="chart"><div class="col"><div class="bars"><i class="bar b-grn" style="--h:88.5%" title="06/26: R$ 655 mil"></i></div><span>06/26</span></div><div class="col"><div class="bars"><i class="bar b-grn" style="--h:93.2%" title="07/26: R$ 690 mil"></i></div><span>07/26</span></div><div class="col"><div class="bars"><i class="bar b-grn" style="--h:86.8%" title="08/26: R$ 642 mil"></i></div><span>08/26</span></div><div class="col"><div class="bars"><i class="bar b-grn" style="--h:94.7%" title="09/26: R$ 701 mil"></i></div><span>09/26</span></div><div class="col"><div class="bars"><i class="bar b-grn" style="--h:93.1%" title="10/26: R$ 689 mil"></i></div><span>10/26</span></div><div class="col"><div class="bars"><i class="bar b-grn" style="--h:44.6%" title="11/26: R$ 330 mil"></i></div><span>11/26</span></div></div>
+          </div>
+        </div>
+        <div class="demo-note">Dados fictícios. Novembro ainda em andamento.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -637,6 +717,18 @@ footer .logo-text{color:#fff}
     }
   });
 })();
+
+  // Barras do Resumo CBS crescem quando a seção entra na tela
+  (function () {
+    var el = document.querySelector('.resumo-mock .screen');
+    if (!el || !('IntersectionObserver' in window)) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    el.classList.add('rs-anim');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { el.classList.add('visivel'); io.disconnect(); } });
+    }, { threshold: 0.25 });
+    io.observe(el);
+  })();
 </script>
 </body>
 </html>
