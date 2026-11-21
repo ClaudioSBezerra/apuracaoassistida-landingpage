@@ -250,6 +250,49 @@ h2{font-size:38px;font-weight:800;letter-spacing:-1px;line-height:1.15;color:#ff
 }
 @media (prefers-reduced-motion:reduce){.rs-anim .bar{transform:none;transition:none}}
 
+/* exemplos das funcionalidades (janela com mini tela) */
+button.feat{font:inherit;color:inherit;text-align:left;width:100%;cursor:pointer}
+button.feat:focus-visible{outline:2px solid var(--primary-soft);outline-offset:3px}
+.feat .ver{display:inline-block;margin-top:10px;font-size:13px;font-weight:700;color:var(--primary-soft);opacity:.75;transition:opacity .2s,transform .2s}
+.feat:hover .ver{opacity:1;transform:translateX(3px)}
+.demo-dlg{border:0;padding:0;background:transparent;width:min(860px,calc(100% - 32px));max-height:calc(100% - 32px);margin:auto;overflow:visible;color:var(--text)}
+.demo-dlg::backdrop{background:rgba(5,12,20,.72);backdrop-filter:blur(6px)}
+.demo-dlg[open]{animation:dmIn .25s var(--ease)}
+@keyframes dmIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+.demo-dlg .mockup-wrap:hover{transform:none}
+.dm-close{margin-left:auto;background:rgba(255,255,255,.08);border:1px solid var(--border);color:#fff;width:30px;height:30px;border-radius:8px;font-size:20px;line-height:1;cursor:pointer}
+.dm-close:hover{border-color:rgba(20,184,166,.6);box-shadow:0 0 16px rgba(20,184,166,.3)}
+.dm-screen{padding:16px;max-height:70vh;overflow:auto}
+.dm-title{display:block;font-size:15px;color:#0f172a;margin-bottom:12px}
+.dm-note{text-align:center;font-size:12px;color:var(--gray);margin-top:10px}
+.dm-foot{font-size:11px;color:#64748b;margin-top:12px}
+.dm-tabs{display:inline-flex;border:1px solid #e2e8f0;border-radius:6px;overflow:hidden;margin-bottom:10px}
+.dm-tabs span{padding:4px 10px;font-size:11px;font-weight:600;color:#64748b}
+.dm-tabs span.on{background:var(--primary-dark);color:#fff}
+.pill{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.p-ok{background:#dcfce7;color:#166534}.p-wait{background:#fef3c7;color:#92400e}.p-err{background:#fee2e2;color:#991b1b}.p-info{background:#e0f2fe;color:#075985}
+.dm-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.dm-cols h5{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:#64748b;margin-bottom:8px}
+.dm-list{list-style:none;display:grid;gap:8px}
+.dm-list li{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #eef2f6;border-radius:8px;padding:9px 11px;font-size:12px;color:#334155}
+.dm-list li b{color:#0f172a}
+.dm-alerts li{justify-content:flex-start}
+.dm-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.dm-kpis div{border:1px solid #e2e8f0;border-radius:8px;padding:10px 12px}
+.dm-kpis small{display:block;font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.3px}
+.dm-kpis b{display:block;font-size:16px;color:#0f172a;margin-top:4px}
+.dm-bar{height:10px;border-radius:999px;background:#f1f5f9;margin-top:14px;overflow:hidden}
+.dm-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:999px}
+.dm-actions{display:flex;gap:8px;margin-top:12px}
+.dm-btn{font-size:12px;font-weight:600;color:#0f172a;border:1px solid #e2e8f0;border-radius:6px;padding:6px 12px}
+@media (max-width:760px){
+  .dm-cols,.dm-kpis{grid-template-columns:1fr}
+  .dm-screen{padding:12px}
+  .dm-screen .demo-table .hide-sm{display:none}
+  .dm-list li{font-size:11px}
+}
+@media (prefers-reduced-motion:reduce){.demo-dlg[open]{animation:none}}
+
 /* faq */
 .faq{max-width:860px}
 details{border-radius:12px;padding:0 20px;margin-bottom:12px;transition:border-color .3s var(--ease),box-shadow .3s var(--ease)}
@@ -455,17 +498,17 @@ footer .logo-text{color:#fff}
   <div class="wrap">
     <p class="eyebrow">Funcionalidades</p>
     <h2>Feito para quem fecha a apuração todo mês.</h2>
-    <p class="lead">Cada número da tela se explica e abre os documentos que o formam.</p>
+    <p class="lead">Cada número da tela se explica e abre os documentos que o formam. Clique em um item para ver um exemplo.</p>
     <div class="grid-3">
-      <div class="feat"><span class="n">01</span><div><h3>Apuração do mês</h3><p>Débitos, créditos e saldo a pagar, lado a lado com o que o governo informou, por CBS e por IBS.</p></div></div>
-      <div class="feat"><span class="n">02</span><div><h3>Comparativo nota a nota</h3><p>Um clique abre só as notas em que a sua base e a do governo discordam, da maior diferença para a menor.</p></div></div>
-      <div class="feat"><span class="n">03</span><div><h3>Malha fina antecipada</h3><p>Notas que o governo tem e a empresa não, e o contrário, com quantos dias estão pendentes.</p></div></div>
-      <div class="feat"><span class="n">04</span><div><h3>Crédito e fornecedores</h3><p>Pagamentos a fornecedores cruzados com as notas, para saber quais créditos já podem nascer.</p></div></div>
-      <div class="feat"><span class="n">05</span><div><h3>Fechamento por estimativa</h3><p>Feche o mês pelas notas de compra e acerte depois, quando o governo confirmar o crédito.</p></div></div>
-      <div class="feat"><span class="n">06</span><div><h3>Alertas e relatórios</h3><p>Fases do mês, prazos e dados que o governo deixou de entregar. Relatórios em PDF e Excel com a sua marca.</p></div></div>
-      <div class="feat"><span class="n">07</span><div><h3>Grupos com várias empresas</h3><p>Cada CNPJ com o seu ambiente e os seus dados separados, sem misturar notas entre empresas.</p></div></div>
-      <div class="feat"><span class="n">08</span><div><h3>Honesto com o que falta</h3><p>Dado que o governo ainda não entregou aparece como "aguardando", nunca como zero.</p></div></div>
-      <div class="feat"><span class="n">09</span><div><h3>Segurança</h3><p>Acesso por usuário, login corporativo (SSO), dados sensíveis criptografados e isolamento por empresa.</p></div></div>
+      <button type="button" class="feat" data-demo="1" aria-haspopup="dialog"><span class="n">01</span><div><h3>Apuração do mês</h3><p>Débitos, créditos e saldo a pagar, lado a lado com o que o governo informou, por CBS e por IBS.</p><span class="ver">Ver exemplo →</span></div></button>
+      <button type="button" class="feat" data-demo="2" aria-haspopup="dialog"><span class="n">02</span><div><h3>Comparativo nota a nota</h3><p>Um clique abre só as notas em que a sua base e a do governo discordam, da maior diferença para a menor.</p><span class="ver">Ver exemplo →</span></div></button>
+      <button type="button" class="feat" data-demo="3" aria-haspopup="dialog"><span class="n">03</span><div><h3>Malha fina antecipada</h3><p>Notas que o governo tem e a empresa não, e o contrário, com quantos dias estão pendentes.</p><span class="ver">Ver exemplo →</span></div></button>
+      <button type="button" class="feat" data-demo="4" aria-haspopup="dialog"><span class="n">04</span><div><h3>Crédito e fornecedores</h3><p>Pagamentos a fornecedores cruzados com as notas, para saber quais créditos já podem nascer.</p><span class="ver">Ver exemplo →</span></div></button>
+      <button type="button" class="feat" data-demo="5" aria-haspopup="dialog"><span class="n">05</span><div><h3>Fechamento por estimativa</h3><p>Feche o mês pelas notas de compra e acerte depois, quando o governo confirmar o crédito.</p><span class="ver">Ver exemplo →</span></div></button>
+      <button type="button" class="feat" data-demo="6" aria-haspopup="dialog"><span class="n">06</span><div><h3>Alertas e relatórios</h3><p>Fases do mês, prazos e dados que o governo deixou de entregar. Relatórios em PDF e Excel com a sua marca.</p><span class="ver">Ver exemplo →</span></div></button>
+      <button type="button" class="feat" data-demo="7" aria-haspopup="dialog"><span class="n">07</span><div><h3>Grupos com várias empresas</h3><p>Cada CNPJ com o seu ambiente e os seus dados separados, sem misturar notas entre empresas.</p><span class="ver">Ver exemplo →</span></div></button>
+      <button type="button" class="feat" data-demo="8" aria-haspopup="dialog"><span class="n">08</span><div><h3>Honesto com o que falta</h3><p>Dado que o governo ainda não entregou aparece como "aguardando", nunca como zero.</p><span class="ver">Ver exemplo →</span></div></button>
+      <button type="button" class="feat" data-demo="9" aria-haspopup="dialog"><span class="n">09</span><div><h3>Segurança</h3><p>Acesso por usuário, login corporativo (SSO), dados sensíveis criptografados e isolamento por empresa.</p><span class="ver">Ver exemplo →</span></div></button>
     </div>
   </div>
 </section>
@@ -631,6 +674,89 @@ footer .logo-text{color:#fff}
   </div>
 </section>
 
+<dialog class="demo-dlg" id="demo-dlg" aria-label="Exemplo da funcionalidade">
+  <div class="mockup-wrap">
+    <div class="mockup-bar"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="mockup-url">suaempresa.apuracaoassistida.ia.br</span>
+      <button type="button" class="dm-close" aria-label="Fechar">×</button></div>
+    <div class="screen dm-screen" id="demo-body"></div>
+  </div>
+  <p class="dm-note">Dados fictícios.</p>
+</dialog>
+<template id="demo-1"><b class="dm-title">Apuração do mês · 10/2026</b>
+<div class="dm-tabs"><span class="on">CBS (RFB)</span><span>IBS (CGIBS)</span></div>
+<table class="demo-table"><thead><tr><th>Linha</th><th>Própria (XMLs)</th><th>Governo</th><th>Diferença</th></tr></thead><tbody>
+<tr class="group hl"><td>Débitos do mês</td><td>R$ 1.248.310,40</td><td>R$ 1.231.905,12</td><td class="dif">+R$ 16.405,28</td></tr>
+<tr class="group"><td>Créditos do mês</td><td>R$ 702.118,90</td><td>R$ 688.540,03</td><td class="dif">+R$ 13.578,87</td></tr>
+<tr><td class="sub">Inapropriáveis</td><td class="na">não disponível</td><td>R$ 4.210,55</td><td class="na">-</td></tr>
+<tr class="total"><td>Saldo a pagar</td><td>R$ 546.191,50</td><td>R$ 543.365,09</td><td class="dif">+R$ 2.826,41</td></tr>
+</tbody></table>
+<p class="dm-foot">Mesmas linhas para o IBS, com a conta do Comitê Gestor.</p></template>
+<template id="demo-2"><b class="dm-title">Comparativo · Débitos do mês · só notas com diferença</b>
+<table class="demo-table"><thead><tr><th>Nota</th><th class="hide-sm">Cliente</th><th>Própria</th><th>Governo</th><th>Diferença</th></tr></thead><tbody>
+<tr><td>NF-e 184.552</td><td class="hide-sm">Construtora Alfa</td><td>R$ 9.120,00</td><td class="na">não consta</td><td class="dif">+R$ 9.120,00</td></tr>
+<tr><td>NF-e 184.019</td><td class="hide-sm">Obras Beta Ltda</td><td>R$ 4.388,40</td><td>R$ 1.096,10</td><td class="dif">+R$ 3.292,30</td></tr>
+<tr><td>NF-e 183.877</td><td class="hide-sm">Casa &amp; Lar ME</td><td>R$ 2.050,75</td><td class="na">não consta</td><td class="dif">+R$ 2.050,75</td></tr>
+<tr><td>NF-e 183.402</td><td class="hide-sm">Engenharia Gama</td><td>R$ 1.204,00</td><td>R$ 1.552,13</td><td class="dif">−R$ 348,13</td></tr>
+<tr><td>NF-e 182.990</td><td class="hide-sm">Varejo Delta</td><td>R$ 611,90</td><td>R$ 711,90</td><td class="dif">−R$ 100,00</td></tr>
+</tbody></table>
+<p class="dm-foot">Ordenado da maior diferença para a menor. Cada nota abre o XML e o registro do governo.</p></template>
+<template id="demo-3"><b class="dm-title">Malha fina · 10/2026</b>
+<div class="dm-cols">
+<div><h5>No governo, não na empresa</h5>
+<ul class="dm-list"><li><span><b>NF-e 51.208</b> · Fornecedor Sul</span><span><span class="pill p-err">23 dias</span></span></li><li><span><b>CT-e 9.114</b> · Transportes Norte</span><span><span class="pill p-wait">12 dias</span></span></li><li><span><b>NFS-e 3.077</b> · Serviços TI</span><span><span class="pill p-wait">5 dias</span></span></li></ul></div>
+<div><h5>Na empresa, não no governo</h5>
+<ul class="dm-list"><li><span><b>NF-e 184.552</b> · Construtora Alfa</span><span><span class="pill p-err">19 dias</span></span></li><li><span><b>NF-e 183.877</b> · Casa &amp; Lar ME</span><span><span class="pill p-wait">8 dias</span></span></li><li><span><b>NF-e 183.990</b> · Cliente final</span><span><span class="pill p-ok">resolvida</span></span></li></ul></div>
+</div>
+<p class="dm-foot">A pendência aparece antes de virar diferença no saldo a pagar.</p></template>
+<template id="demo-4"><b class="dm-title">Crédito e fornecedores · 10/2026</b>
+<table class="demo-table"><thead><tr><th>Fornecedor</th><th class="hide-sm">Notas</th><th>Crédito</th><th>Situação</th></tr></thead><tbody>
+<tr><td>Cimentos Nacional S.A.</td><td class="hide-sm">42</td><td>R$ 38.410,20</td><td><span class="pill p-ok">liberado</span></td></tr>
+<tr><td>Aço Forte Ltda</td><td class="hide-sm">17</td><td>R$ 21.006,85</td><td><span class="pill p-ok">liberado</span></td></tr>
+<tr><td>Tintas Brasil</td><td class="hide-sm">9</td><td>R$ 7.322,10</td><td><span class="pill p-wait">aguardando o fornecedor pagar</span></td></tr>
+<tr><td>Madeiras do Vale</td><td class="hide-sm">5</td><td>R$ 2.918,44</td><td><span class="pill p-err">pagamento sem nota</span></td></tr>
+</tbody></table>
+<p class="dm-foot">O crédito só nasce quando o débito do fornecedor é extinto. A tela mostra de quem cobrar.</p></template>
+<template id="demo-5"><b class="dm-title">Fechamento por estimativa · 10/2026</b>
+<div class="dm-kpis">
+<div><small>Crédito estimado (notas de compra)</small><b>R$ 702.118,90</b></div>
+<div><small>Confirmado pelo governo</small><b class="c-grn">R$ 688.540,03</b></div>
+<div><small>A acertar no próximo mês</small><b class="c-org">R$ 13.578,87</b></div>
+</div>
+<div class="dm-bar"><i style="width:98%"></i></div>
+<p class="dm-foot">98% do crédito estimado já confirmado. O acerto entra sozinho quando o governo entregar o restante.</p></template>
+<template id="demo-6"><b class="dm-title">Alertas e relatórios</b>
+<ul class="dm-list dm-alerts">
+<li><span class="pill p-info">Fase</span> Período de ajuste de 10/2026 termina em 25/11 — faltam 4 dias.</li>
+<li><span class="pill p-wait">Dado</span> Créditos de 13/11 ainda não entregues pela Receita.</li>
+<li><span class="pill p-err">Diferença</span> 3 notas de venda acima de R$ 2 mil sem registro no governo.</li>
+<li><span class="pill p-ok">OK</span> Débitos de 20/11 recebidos e conferidos.</li>
+</ul>
+<div class="dm-actions"><span class="dm-btn">Exportar PDF</span><span class="dm-btn">Exportar Excel</span></div></template>
+<template id="demo-7"><b class="dm-title">Grupo Demonstração · 3 empresas</b>
+<table class="demo-table"><thead><tr><th>Empresa</th><th class="hide-sm">CNPJ</th><th>Notas no mês</th><th>Ambiente</th></tr></thead><tbody>
+<tr><td>Demonstração Matriz</td><td class="hide-sm">00.000.001/0001-00</td><td>182.440</td><td><span class="pill p-ok">separado</span></td></tr>
+<tr><td>Demonstração Filial Norte</td><td class="hide-sm">00.000.001/0002-81</td><td>64.105</td><td><span class="pill p-ok">separado</span></td></tr>
+<tr><td>Demonstração Serviços</td><td class="hide-sm">00.000.002/0001-90</td><td>3.912</td><td><span class="pill p-ok">separado</span></td></tr>
+</tbody></table>
+<p class="dm-foot">Cada usuário vê só as empresas a que tem acesso. Nenhuma nota passa de um CNPJ para outro.</p></template>
+<template id="demo-8"><b class="dm-title">Débitos do mês · por dia de registro</b>
+<table class="demo-table"><thead><tr><th>Dia</th><th>Própria (XMLs)</th><th>Governo</th></tr></thead><tbody>
+<tr><td>18/11</td><td>R$ 41.208,10</td><td>R$ 41.208,10</td></tr>
+<tr><td>19/11</td><td>R$ 39.977,42</td><td>R$ 39.612,05</td></tr>
+<tr><td>20/11</td><td>R$ 44.105,88</td><td><span class="pill p-wait">aguardando</span></td></tr>
+<tr><td>21/11</td><td>R$ 12.440,31</td><td><span class="pill p-wait">aguardando</span></td></tr>
+</tbody></table>
+<p class="dm-foot">Se o governo ainda não entregou, a tela diz "aguardando". Zero só quando é zero de verdade.</p></template>
+<template id="demo-9"><b class="dm-title">Segurança</b>
+<ul class="dm-list dm-sec">
+<li><b>Login corporativo (SSO)</b><span><span class="pill p-ok">ativo</span></span></li>
+<li><b>Usuários e perfis por empresa</b><span><span class="pill p-ok">12 usuários</span></span></li>
+<li><b>Certificados e credenciais do governo</b><span><span class="pill p-ok">criptografados</span></span></li>
+<li><b>Isolamento entre empresas</b><span><span class="pill p-ok">por CNPJ</span></span></li>
+<li><b>Sessão</b><span><span class="pill p-info">expira em 30 min</span></span></li>
+</ul>
+<p class="dm-foot">As credenciais da Receita e do Comitê Gestor são da própria empresa e ficam guardadas criptografadas.</p></template>
+
 <footer>
   <div class="foot">
     <div>
@@ -728,6 +854,25 @@ footer .logo-text{color:#fff}
       es.forEach(function (e) { if (e.isIntersecting) { el.classList.add('visivel'); io.disconnect(); } });
     }, { threshold: 0.25 });
     io.observe(el);
+  })();
+
+  // Exemplos das funcionalidades: cada cartão abre uma mini tela com dados fictícios
+  (function () {
+    var dlg = document.getElementById('demo-dlg');
+    var body = document.getElementById('demo-body');
+    if (!dlg || typeof dlg.showModal !== 'function') return;
+    document.querySelectorAll('button.feat[data-demo]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var t = document.getElementById('demo-' + b.getAttribute('data-demo'));
+        if (!t) return;
+        body.innerHTML = '';
+        body.appendChild(t.content.cloneNode(true));
+        body.scrollTop = 0;
+        dlg.showModal();
+      });
+    });
+    dlg.querySelector('.dm-close').addEventListener('click', function () { dlg.close(); });
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
   })();
 </script>
 </body>
