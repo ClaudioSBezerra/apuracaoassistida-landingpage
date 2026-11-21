@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0E7490">
+<meta name="theme-color" content="#107C89">
 <meta name="author" content="FBTechIA">
 <title>FBTax — Apuração Assistida da CBS e do IBS conferida nota a nota</title>
 <meta name="description" content="Com a reforma tributária, a Receita calcula o imposto da sua empresa. O FBTax, da FBTechIA, confere a apuração assistida da CBS e do IBS nota a nota e mostra onde está a diferença.">
@@ -14,6 +14,10 @@
 <meta property="og:title" content="A Receita vai calcular o imposto da sua empresa. Quem confere?">
 <meta property="og:description" content="O FBTax compara a sua apuração de CBS e IBS com a da Receita e do Comitê Gestor do IBS, nota a nota.">
 <meta property="og:url" content="https://apuracaoassistida.ia.br/">
+<meta property="og:image" content="https://apuracaoassistida.ia.br/logo-fbtechia.png">
+<meta property="og:image:width" content="471">
+<meta property="og:image:height" content="445">
+<meta property="og:image:alt" content="Logo da FBTechIA">
 <meta name="twitter:card" content="summary">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,18 +32,18 @@
   "operatingSystem": "Web",
   "description": "Conferência da apuração assistida da CBS e do IBS: compara a apuração própria da empresa com a da Receita Federal e do Comitê Gestor do IBS, nota a nota.",
   "url": "https://apuracaoassistida.ia.br/",
-  "publisher": {"@type": "Organization", "name": "FBTechIA", "url": "https://www.fbtechia.com"}
+  "publisher": {"@type": "Organization", "name": "FBTechIA", "url": "https://www.fbtechia.com", "logo": "https://apuracaoassistida.ia.br/logo-fbtechia.png", "taxID": "38.149.716/0001-28"}
 }
 </script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --primary:#0E7490;
-  --primary-dark:#155E75;
-  --primary-light:#E6F4F7;
-  --primary-mid:#22A3BF;
-  --dark:#0B1F2A;
-  --dark2:#12303D;
+  --primary:#107C89;
+  --primary-dark:#0B5F69;
+  --primary-light:#E4F5F3;
+  --primary-mid:#2EBCAE;
+  --dark:#0E2A2F;
+  --dark2:#114146;
   --gray:#5B6770;
   --gray-light:#F3F6F8;
   --gray-border:#E2E8EC;
@@ -58,7 +62,7 @@ svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--gray-border);padding:0 5%}
 .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo-icon{width:36px;height:36px;background:var(--primary);border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff}
+.logo-img{width:40px;height:auto;border-radius:9px;display:block}
 .logo-text{font-size:18px;font-weight:800;color:var(--dark);letter-spacing:-.3px}
 .logo-text span{color:var(--primary)}
 .logo-sub{display:block;font-size:11px;font-weight:500;color:var(--gray);letter-spacing:0}
@@ -73,16 +77,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .menu-btn{display:none;background:none;border:1px solid var(--gray-border);border-radius:8px;width:44px;height:44px;align-items:center;justify-content:center;color:var(--dark);cursor:pointer}
 
 /* ── HERO ── */
-.hero{padding:132px 5% 72px;background:linear-gradient(180deg,#EEF7F9 0%,#FFFFFF 100%)}
-.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center}
+.hero{padding:132px 5% 72px;background:linear-gradient(180deg,#E9F7F5 0%,#FFFFFF 100%)}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:center}
 .hero-inner>*,.contact>*,.case>*{min-width:0}
 .screen{overflow-x:auto}
-.badge{display:inline-flex;align-items:center;gap:6px;background:var(--primary-light);color:var(--primary-dark);font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px;border:1px solid #BFE3EA;margin-bottom:22px;letter-spacing:.3px;text-transform:uppercase}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--primary-light);color:var(--primary-dark);font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px;border:1px solid #BDE6E0;margin-bottom:22px;letter-spacing:.3px;text-transform:uppercase}
 h1{font-size:50px;font-weight:800;line-height:1.08;letter-spacing:-1.5px;color:var(--dark);margin-bottom:20px}
 h1 span{color:var(--primary)}
 .hero-sub{font-size:18px;color:var(--gray);line-height:1.65;margin-bottom:32px;max-width:520px}
 .hero-ctas{display:flex;align-items:center;gap:14px;margin-bottom:24px;flex-wrap:wrap}
-.btn-hero{padding:14px 26px;font-size:16px;font-weight:700;color:#fff;background:var(--primary);border:none;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(14,116,144,.28);cursor:pointer}
+.btn-hero{padding:14px 26px;font-size:16px;font-weight:700;color:#fff;background:var(--primary);border:none;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(16,124,137,.28);cursor:pointer}
 .btn-hero:hover{background:var(--primary-dark)}
 .btn-hero-ghost{padding:14px 26px;font-size:16px;font-weight:600;color:var(--dark);background:#fff;border:1.5px solid var(--gray-border);border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
 .btn-hero-ghost:hover{border-color:var(--primary);color:var(--primary)}
@@ -110,7 +114,8 @@ h1 span{color:var(--primary)}
 .demo-table{width:100%;border-collapse:collapse}
 .demo-table th{background:#F6F8F9;color:#6A7780;font-size:10px;font-weight:600;text-align:right;padding:7px 10px}
 .demo-table th:first-child,.demo-table td:first-child{text-align:left;padding-left:14px}
-.demo-table td{padding:8px 10px;border-top:1px solid #F0F3F5;text-align:right;white-space:nowrap}
+.demo-table td{padding:8px 8px;border-top:1px solid #F0F3F5;text-align:right;white-space:nowrap}
+.demo-table td:first-child{white-space:normal}
 .demo-table tr.group td{font-weight:700;background:#fff}
 .demo-table td.sub{color:#6A7780;padding-left:26px}
 .demo-table td.na{color:#9AA6AD;font-style:italic}
@@ -167,7 +172,7 @@ h2{font-size:38px;font-weight:800;letter-spacing:-1px;line-height:1.15;color:var
 /* planos */
 .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .plan{border:1px solid var(--gray-border);border-radius:16px;padding:28px;background:#fff;display:flex;flex-direction:column}
-.plan.featured{border:2px solid var(--primary);box-shadow:0 12px 32px rgba(14,116,144,.12)}
+.plan.featured{border:2px solid var(--primary);box-shadow:0 12px 32px rgba(16,124,137,.12)}
 .plan h3{font-size:20px;margin-bottom:4px}
 .plan .range{font-size:13px;color:var(--gray);margin-bottom:18px}
 .plan ul{list-style:none;display:grid;gap:10px;margin-bottom:24px;flex:1}
@@ -208,13 +213,15 @@ textarea{min-height:96px;resize:vertical}
 .wa:hover{background:#0E6E3A}
 
 /* cta final */
-.cta-final{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;text-align:center;border-radius:20px;padding:56px 32px}
+.cta-final{background:linear-gradient(135deg,#107C89 0%,#2EBCAE 100%);color:#fff;text-align:center;border-radius:20px;padding:56px 32px}
 .cta-final h2{color:#fff}
 .cta-final p{color:#D8EEF3;font-size:17px;margin-bottom:28px}
 .cta-final .btn-hero{background:#fff;color:var(--primary-dark);box-shadow:none}
 
 /* rodapé */
 footer{background:var(--dark);color:#B9C7CE;padding:56px 5% 32px}
+.foot-logo{width:72px;height:auto;border-radius:12px;display:block;margin-bottom:12px}
+.foot-company{font-size:13px;line-height:1.7;margin-top:12px;color:#9FB2B8}
 .foot{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px}
 footer h4{color:#fff;font-size:14px;margin-bottom:12px}
 footer a{color:#B9C7CE;text-decoration:none;font-size:14px;display:block;margin-bottom:8px}
@@ -265,7 +272,7 @@ footer .logo-text{color:#fff}
 <nav>
   <div class="nav-inner">
     <a class="logo" href="#topo" aria-label="FBTax, início">
-      <span class="logo-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11l3 3l8 -8"/><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9"/></svg></span>
+      <img class="logo-img" src="logo-fbtechia.png" alt="FBTechIA" width="40" height="38">
       <span class="logo-text">FB<span>Tax</span><span class="logo-sub">por FBTechIA</span></span>
     </a>
     <div class="nav-links" id="menu">
@@ -535,9 +542,9 @@ footer .logo-text{color:#fff}
 <footer>
   <div class="foot">
     <div>
-      <a class="logo" href="#topo" style="margin:0"><span class="logo-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11l3 3l8 -8"/><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9"/></svg></span><span class="logo-text">FB<span>Tax</span></span></a>
-      <p class="foot-desc">Conferência da apuração assistida da CBS e do IBS, nota a nota. Um produto da FBTechIA.</p>
-      <!-- TODO: CNPJ e razão social da FBTechIA quando confirmados. -->
+      <img class="foot-logo" src="logo-fbtechia.png" alt="FBTechIA" width="72" height="68" loading="lazy">
+      <p class="foot-desc"><strong style="color:#fff">FBTax</strong> — conferência da apuração assistida da CBS e do IBS, nota a nota. Um produto da FBTechIA.</p>
+      <p class="foot-company">FBTechIA · CNPJ 38.149.716/0001-28<br><a href="https://www.fbtechia.com" target="_blank" rel="noopener" style="display:inline">www.fbtechia.com</a></p>
     </div>
     <div>
       <h4>Produto</h4>
@@ -548,7 +555,7 @@ footer .logo-text{color:#fff}
     </div>
     <div>
       <h4>Empresa</h4>
-      <a href="https://www.fbtechia.com" target="_blank" rel="noopener">FBTechIA</a>
+      <a href="https://www.fbtechia.com" target="_blank" rel="noopener">www.fbtechia.com</a>
       <a href="#contato">Contato</a>
       <a href="mailto:contato@fbtechia.com">contato@fbtechia.com</a>
       <!-- TODO: links do LinkedIn, YouTube e Instagram quando os perfis estiverem no ar. -->
@@ -559,7 +566,7 @@ footer .logo-text{color:#fff}
       <a href="https://apuracao.fbtax.cloud">Entrar no sistema</a>
     </div>
   </div>
-  <p class="disclaimer">O FBTax é uma solução privada da FBTechIA. Este site não pertence à Receita Federal, ao Comitê Gestor do IBS nem a qualquer órgão público. "Apuração assistida" é o nome do serviço oficial de apuração da CBS e do IBS, ao qual o FBTax se conecta com as credenciais da própria empresa.<br>© 2026 FBTechIA. Feito no Brasil.</p>
+  <p class="disclaimer">O FBTax é uma solução privada da FBTechIA. Este site não pertence à Receita Federal, ao Comitê Gestor do IBS nem a qualquer órgão público. "Apuração assistida" é o nome do serviço oficial de apuração da CBS e do IBS, ao qual o FBTax se conecta com as credenciais da própria empresa.<br>© 2026 FBTechIA · CNPJ 38.149.716/0001-28. Feito no Brasil.</p>
 </footer>
 
 <script>
