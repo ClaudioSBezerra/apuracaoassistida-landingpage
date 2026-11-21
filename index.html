@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FBTax — Apuração Assistida da CBS e do IBS conferida nota a nota</title>
+<meta name="description" content="Com a reforma tributária, a Receita calcula o imposto da sua empresa. O FBTax, da FBTechIA, confere a apuração assistida da CBS e do IBS nota a nota e mostra onde está a diferença.">
+<link rel="canonical" href="https://apuracaoassistida.ia.br/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="FBTax — FBTechIA">
+<meta property="og:title" content="A Receita vai calcular o imposto da sua empresa. Quem confere?">
+<meta property="og:description" content="O FBTax compara a sua apuração de CBS e IBS com a da Receita e do Comitê Gestor do IBS, nota a nota.">
+<meta property="og:url" content="https://apuracaoassistida.ia.br/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "FBTax",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": "Conferência da apuração assistida da CBS e do IBS: compara a apuração própria da empresa com a da Receita Federal e do Comitê Gestor do IBS, nota a nota.",
+  "url": "https://apuracaoassistida.ia.br/",
+  "publisher": {"@type": "Organization", "name": "FBTechIA", "url": "https://www.fbtechia.com"}
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#0E7490;
+  --primary-dark:#155E75;
+  --primary-light:#E6F4F7;
+  --primary-mid:#22A3BF;
+  --dark:#0B1F2A;
+  --dark2:#12303D;
+  --gray:#5B6770;
+  --gray-light:#F3F6F8;
+  --gray-border:#E2E8EC;
+  --white:#FFFFFF;
+  --text:#0B1F2A;
+  --warn:#B45309;
+  --warn-light:#FFF7E6;
+  --ok:#15803D;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(--white);-webkit-font-smoothing:antialiased;line-height:1.5}
+a{color:var(--primary)}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--gray-border);padding:0 5%}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{width:36px;height:36px;background:var(--primary);border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff}
+.logo-text{font-size:18px;font-weight:800;color:var(--dark);letter-spacing:-.3px}
+.logo-text span{color:var(--primary)}
+.logo-sub{display:block;font-size:11px;font-weight:500;color:var(--gray);letter-spacing:0}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{text-decoration:none;font-size:14px;font-weight:500;color:var(--gray)}
+.nav-links a:hover{color:var(--dark)}
+.nav-ctas{display:flex;align-items:center;gap:10px}
+.btn-ghost{padding:8px 16px;font-size:14px;font-weight:500;color:var(--dark);background:#fff;border:1px solid var(--gray-border);border-radius:8px;text-decoration:none;white-space:nowrap}
+.btn-ghost:hover{border-color:var(--primary);color:var(--primary)}
+.btn-primary{padding:9px 18px;font-size:14px;font-weight:600;color:#fff;background:var(--primary);border:none;border-radius:8px;text-decoration:none;white-space:nowrap;cursor:pointer}
+.btn-primary:hover{background:var(--primary-dark)}
+.menu-btn{display:none;background:none;border:1px solid var(--gray-border);border-radius:8px;width:44px;height:44px;align-items:center;justify-content:center;color:var(--dark);cursor:pointer}
+
+/* ── HERO ── */
+.hero{padding:132px 5% 72px;background:linear-gradient(180deg,#EEF7F9 0%,#FFFFFF 100%)}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center}
+.hero-inner>*,.contact>*,.case>*{min-width:0}
+.screen{overflow-x:auto}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--primary-light);color:var(--primary-dark);font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px;border:1px solid #BFE3EA;margin-bottom:22px;letter-spacing:.3px;text-transform:uppercase}
+h1{font-size:50px;font-weight:800;line-height:1.08;letter-spacing:-1.5px;color:var(--dark);margin-bottom:20px}
+h1 span{color:var(--primary)}
+.hero-sub{font-size:18px;color:var(--gray);line-height:1.65;margin-bottom:32px;max-width:520px}
+.hero-ctas{display:flex;align-items:center;gap:14px;margin-bottom:24px;flex-wrap:wrap}
+.btn-hero{padding:14px 26px;font-size:16px;font-weight:700;color:#fff;background:var(--primary);border:none;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(14,116,144,.28);cursor:pointer}
+.btn-hero:hover{background:var(--primary-dark)}
+.btn-hero-ghost{padding:14px 26px;font-size:16px;font-weight:600;color:var(--dark);background:#fff;border:1.5px solid var(--gray-border);border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-hero-ghost:hover{border-color:var(--primary);color:var(--primary)}
+.hero-proof{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--gray)}
+.hero-proof span{display:inline-flex;align-items:center;gap:6px}
+.hero-proof svg{width:16px;height:16px;color:var(--ok)}
+
+/* ── MOCKUP ── */
+.mockup-wrap{background:var(--dark);border-radius:16px;padding:12px;box-shadow:0 24px 64px rgba(11,31,42,.22)}
+.mockup-bar{display:flex;align-items:center;gap:6px;margin-bottom:10px}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot-r{background:#FF5F57}.dot-y{background:#FEBC2E}.dot-g{background:#28C840}
+.mockup-url{margin-left:10px;font-size:11px;color:#9FB3BD;background:#16303C;border-radius:6px;padding:3px 10px}
+.screen{background:#fff;border-radius:10px;overflow:hidden;font-size:12px}
+.screen-head{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid #EEF2F4}
+.screen-head b{font-size:14px}
+.screen-head small{display:block;color:#7A8790;font-size:10px;text-transform:uppercase;letter-spacing:.4px}
+.toggle{display:flex;border:1px solid var(--gray-border);border-radius:6px;overflow:hidden}
+.toggle span{padding:4px 9px;font-size:11px;font-weight:600;color:var(--gray)}
+.toggle span.on{background:var(--primary);color:#fff}
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:10px 14px}
+.phase{border:1px solid var(--gray-border);border-radius:6px;padding:6px 8px;color:var(--gray);font-size:10px}
+.phase b{display:block;font-size:10px;text-transform:uppercase}
+.phase.on{border:2px solid var(--primary);color:var(--primary-dark)}
+.demo-table{width:100%;border-collapse:collapse}
+.demo-table th{background:#F6F8F9;color:#6A7780;font-size:10px;font-weight:600;text-align:right;padding:7px 10px}
+.demo-table th:first-child,.demo-table td:first-child{text-align:left;padding-left:14px}
+.demo-table td{padding:8px 10px;border-top:1px solid #F0F3F5;text-align:right;white-space:nowrap}
+.demo-table tr.group td{font-weight:700;background:#fff}
+.demo-table td.sub{color:#6A7780;padding-left:26px}
+.demo-table td.na{color:#9AA6AD;font-style:italic}
+.demo-table td.dif{color:var(--warn);font-weight:700}
+.demo-table tr.hl{background:var(--warn-light)}
+.demo-table tr.total td{border-top:2px solid var(--dark);font-weight:800}
+.demo-note{padding:8px 14px;color:#8A969D;font-size:10px;border-top:1px solid #F0F3F5}
+
+/* ── SECTIONS ── */
+section{padding:88px 5%}
+.wrap{max-width:1200px;margin:0 auto}
+.eyebrow{font-size:12px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+h2{font-size:38px;font-weight:800;letter-spacing:-1px;line-height:1.15;color:var(--dark);margin-bottom:14px}
+.lead{font-size:17px;color:var(--gray);max-width:720px;line-height:1.65;margin-bottom:44px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:#fff;border:1px solid var(--gray-border);border-radius:14px;padding:24px}
+.card .ic{width:44px;height:44px;border-radius:10px;background:var(--primary-light);color:var(--primary);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.card h3{font-size:17px;font-weight:700;margin-bottom:8px;color:var(--dark)}
+.card p{font-size:14px;color:var(--gray);line-height:1.6}
+.bg-soft{background:var(--gray-light)}
+.problem .card .ic{background:var(--warn-light);color:var(--warn)}
+
+/* passos */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:passo}
+.step{position:relative;padding:24px;border-radius:14px;background:#fff;border:1px solid var(--gray-border)}
+.step::before{counter-increment:passo;content:counter(passo);display:flex;width:34px;height:34px;border-radius:50%;background:var(--primary);color:#fff;font-weight:800;align-items:center;justify-content:center;margin-bottom:14px}
+.step h3{font-size:16px;margin-bottom:6px}
+.step p{font-size:14px;color:var(--gray);line-height:1.6}
+
+/* funcionalidades */
+.feat{display:flex;gap:14px;padding:20px;border-radius:12px;border:1px solid var(--gray-border);background:#fff}
+.feat .n{font-size:13px;font-weight:800;color:var(--primary);min-width:24px}
+.feat h3{font-size:15px;margin-bottom:4px}
+.feat p{font-size:14px;color:var(--gray);line-height:1.55}
+
+/* caso */
+.case{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;background:var(--dark);color:#fff;border-radius:20px;padding:48px}
+.case h2{color:#fff}
+.case p{color:#C9D6DC;font-size:16px;line-height:1.7}
+.case ul{list-style:none;display:grid;gap:12px}
+.case li{display:flex;gap:10px;align-items:flex-start;color:#E4EDF1;font-size:15px}
+.case li svg{color:var(--primary-mid);margin-top:2px}
+
+/* calendário */
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-top:8px}
+.timeline::before{content:"";position:absolute;top:17px;left:6%;right:6%;height:3px;background:var(--gray-border)}
+.tl{position:relative;padding:0 14px;text-align:center}
+.tl .pin{display:block;width:36px;height:36px;border-radius:50%;background:#fff;border:3px solid var(--primary);margin:0 auto 14px;position:relative;z-index:1}
+.tl.now .pin{background:var(--primary)}
+.tl b{display:block;font-size:20px;color:var(--dark);margin-bottom:6px}
+.tl p{font-size:14px;color:var(--gray);line-height:1.55}
+
+/* planos */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.plan{border:1px solid var(--gray-border);border-radius:16px;padding:28px;background:#fff;display:flex;flex-direction:column}
+.plan.featured{border:2px solid var(--primary);box-shadow:0 12px 32px rgba(14,116,144,.12)}
+.plan h3{font-size:20px;margin-bottom:4px}
+.plan .range{font-size:13px;color:var(--gray);margin-bottom:18px}
+.plan ul{list-style:none;display:grid;gap:10px;margin-bottom:24px;flex:1}
+.plan li{display:flex;gap:8px;font-size:14px;color:var(--text)}
+.plan li svg{width:18px;height:18px;color:var(--ok);margin-top:1px}
+.plan .price{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:14px}
+.plan .btn-primary,.plan .btn-ghost{text-align:center;padding:12px}
+.plans-note{font-size:14px;color:var(--gray);margin-top:18px}
+
+/* vídeos */
+.videos-empty{border:2px dashed var(--gray-border);border-radius:16px;padding:36px;text-align:center;color:var(--gray)}
+
+/* faq */
+.faq{max-width:860px}
+details{border:1px solid var(--gray-border);border-radius:12px;padding:0 20px;background:#fff;margin-bottom:12px}
+summary{cursor:pointer;list-style:none;padding:18px 0;font-weight:600;font-size:16px;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:22px;color:var(--primary);line-height:1}
+details[open] summary::after{content:"–"}
+details p{padding:0 0 18px;color:var(--gray);font-size:15px;line-height:1.7}
+
+/* contato */
+.contact{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start}
+.contact-info p{color:var(--gray);font-size:16px;line-height:1.7;margin-bottom:20px}
+.contact-info a.line{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:600;color:var(--dark);text-decoration:none;margin-bottom:12px}
+.contact-info a.line:hover{color:var(--primary)}
+form{background:#fff;border:1px solid var(--gray-border);border-radius:16px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+form .full{grid-column:1/-1}
+label{display:block;font-size:13px;font-weight:600;color:var(--dark);margin-bottom:6px}
+input,select,textarea{width:100%;font:inherit;font-size:15px;padding:11px 12px;border:1px solid #CBD5DB;border-radius:8px;background:#fff;color:var(--text)}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--primary-mid);border-color:var(--primary)}
+textarea{min-height:96px;resize:vertical}
+.form-actions{display:flex;gap:10px;flex-wrap:wrap}
+.form-actions button{flex:1;min-width:180px;justify-content:center;font-size:15px;padding:13px 18px}
+.form-msg{font-size:13px;color:var(--gray)}
+.form-err{color:#B91C1C;font-size:13px;display:none}
+.wa{background:#128C4A}
+.wa:hover{background:#0E6E3A}
+
+/* cta final */
+.cta-final{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;text-align:center;border-radius:20px;padding:56px 32px}
+.cta-final h2{color:#fff}
+.cta-final p{color:#D8EEF3;font-size:17px;margin-bottom:28px}
+.cta-final .btn-hero{background:#fff;color:var(--primary-dark);box-shadow:none}
+
+/* rodapé */
+footer{background:var(--dark);color:#B9C7CE;padding:56px 5% 32px}
+.foot{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px}
+footer h4{color:#fff;font-size:14px;margin-bottom:12px}
+footer a{color:#B9C7CE;text-decoration:none;font-size:14px;display:block;margin-bottom:8px}
+footer a:hover{color:#fff}
+footer .logo-text{color:#fff}
+.foot-desc{font-size:14px;line-height:1.7;margin-top:12px}
+.disclaimer{max-width:1200px;margin:32px auto 0;border-top:1px solid #23404D;padding-top:20px;font-size:13px;line-height:1.7;color:#93A6AF}
+
+/* ── RESPONSIVO ── */
+@media (max-width:1024px){
+  .hero-inner{grid-template-columns:1fr}
+  .grid-4,.steps{grid-template-columns:repeat(2,1fr)}
+  .grid-3,.plans{grid-template-columns:1fr}
+  .case,.contact{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:#fff;flex-direction:column;align-items:flex-start;gap:0;border-bottom:1px solid var(--gray-border);padding:8px 5% 16px}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:12px 0;font-size:16px;width:100%}
+  .menu-btn{display:flex}
+  .nav-ctas .btn-ghost{display:none}
+  .nav-ctas .btn-primary{padding:9px 12px;font-size:13px}
+  .logo-sub{display:none}
+  h1{font-size:36px;letter-spacing:-1px}
+  h2{font-size:29px}
+  section{padding:64px 5%}
+  .hero{padding:104px 5% 56px}
+  .grid-4,.steps{grid-template-columns:1fr}
+  .timeline{grid-template-columns:1fr;gap:22px}
+  .timeline::before{display:none}
+  .tl{text-align:left;display:grid;grid-template-columns:36px 1fr;gap:4px 14px}
+  .tl .pin{margin:0;grid-row:span 2}
+  form{grid-template-columns:1fr;padding:20px}
+  .case{padding:28px}
+  .foot{grid-template-columns:1fr}
+  .demo-table .hide-sm,.demo-table tr:has(td.sub){display:none}
+  .demo-table th,.demo-table td{font-size:10px;padding:6px 4px}
+  .demo-table td:first-child{white-space:normal}
+  .demo-table th:first-child,.demo-table td:first-child{padding-left:10px}
+  .phases{gap:4px;padding:8px 10px}
+  .phase{padding:5px 6px;font-size:9px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#topo" aria-label="FBTax, início">
+      <span class="logo-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11l3 3l8 -8"/><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9"/></svg></span>
+      <span class="logo-text">FB<span>Tax</span><span class="logo-sub">por FBTechIA</span></span>
+    </a>
+    <div class="nav-links" id="menu">
+      <a href="#problema">O problema</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#funcionalidades">Funcionalidades</a>
+      <a href="#planos">Planos</a>
+      <a href="#faq">Dúvidas</a>
+    </div>
+    <div class="nav-ctas">
+      <a class="btn-ghost" href="https://apuracao.fbtax.cloud">Entrar</a>
+      <a class="btn-primary" href="#contato">Agendar demonstração</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="topo">
+  <div class="hero-inner">
+    <div>
+      <span class="badge">Reforma tributária · CBS e IBS</span>
+      <h1>A Receita vai calcular o imposto da sua empresa. <span>Quem confere?</span></h1>
+      <p class="hero-sub">Na apuração assistida, o governo monta a conta da CBS e do IBS a partir das notas fiscais. O FBTax compara essa conta com a da sua empresa, nota a nota, e mostra onde está a diferença ainda dentro do prazo de ajuste.</p>
+      <div class="hero-ctas">
+        <a class="btn-hero" href="#contato">Agendar demonstração
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6l-6 6"/></svg></a>
+        <a class="btn-hero-ghost" href="#como-funciona">Ver como funciona</a>
+      </div>
+      <div class="hero-proof">
+        <span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Integrado às APIs da Receita Federal e do Comitê Gestor do IBS</span>
+        <span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Já em produção com SAP S/4HANA</span>
+      </div>
+    </div>
+
+    <div class="mockup-wrap" aria-label="Exemplo da tela Apuração do mês com dados fictícios">
+      <div class="mockup-bar"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="mockup-url">suaempresa.apuracaoassistida.ia.br</span></div>
+      <div class="screen">
+        <div class="screen-head">
+          <div><small>Empresa Demonstração Ltda</small><b>Apuração do mês · 10/2026</b></div>
+          <div class="toggle"><span class="on">CBS (RFB)</span><span>IBS (CGIBS)</span></div>
+        </div>
+        <div class="phases">
+          <div class="phase"><b>Em andamento</b>01/10 a 31/10</div>
+          <div class="phase on"><b>● Período de ajuste</b>01/11 a 25/11</div>
+          <div class="phase"><b>Concluída</b>a partir de 26/11</div>
+        </div>
+        <table class="demo-table">
+          <thead><tr><th>Linha</th><th>Própria (XMLs)</th><th>RFB</th><th>Diferença</th></tr></thead>
+          <tbody>
+            <tr class="group hl"><td>Débitos do mês</td><td>R$ 1.248.310,40</td><td>R$ 1.231.905,12</td><td class="dif">+R$ 16.405,28</td></tr>
+            <tr><td class="sub">Apuração corrente</td><td class="na">não disponível</td><td>R$ 1.229.118,90</td><td class="na">-</td></tr>
+            <tr class="hide-sm"><td class="sub">Extintos (pagos ou compensados)</td><td class="na">não disponível</td><td>R$ 402.776,31</td><td class="na">-</td></tr>
+            <tr class="group"><td>Créditos do mês</td><td>R$ 702.118,90</td><td>R$ 688.540,03</td><td class="dif">+R$ 13.578,87</td></tr>
+            <tr><td class="sub">Mediante extinção do débito do fornecedor</td><td class="na">não disponível</td><td>R$ 611.204,77</td><td class="na">-</td></tr>
+            <tr class="hide-sm"><td class="sub">Aguardando o fornecedor pagar</td><td class="na">não disponível</td><td>R$ 77.335,26</td><td class="na">-</td></tr>
+            <tr class="total"><td>Saldo a pagar</td><td>R$ 546.191,50</td><td>R$ 543.365,09</td><td class="dif">+R$ 2.826,41</td></tr>
+          </tbody>
+        </table>
+        <div class="demo-note">Dados fictícios. Um clique em cada linha abre as notas que formam o valor.</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="problem" id="problema">
+  <div class="wrap">
+    <p class="eyebrow">O problema</p>
+    <h2>O governo calcula primeiro. A responsabilidade continua sendo sua.</h2>
+    <p class="lead">Com a reforma tributária, a CBS substitui PIS e COFINS e o IBS substitui ICMS e ISS. A Receita e o Comitê Gestor do IBS passam a montar a apuração a partir das notas eletrônicas. Se ninguém conferir, a empresa paga o que estiver na conta.</p>
+    <div class="grid-4">
+      <div class="card"><div class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"/><path d="M10 13l4 4m0 -4l-4 4"/></svg></div><h3>Nota que falta</h3><p>Uma nota que não aparece do lado do governo, ou aparece com outro valor, vira imposto pago a mais. Em centenas de milhares de notas por mês, ninguém vê à mão.</p></div>
+      <div class="card"><div class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v4l2 2"/><path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5"/></svg></div><h3>Crédito que não chega</h3><p>Na regra nova, o crédito da compra só nasce quando o fornecedor paga o imposto dele. É preciso saber quais créditos ainda estão esperando e de quem cobrar.</p></div>
+      <div class="card"><div class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"/><path d="M16 3v4M8 3v4M4 11h16"/></svg></div><h3>Prazo que acaba</h3><p>Cada mês tem um período curto de ajuste. Depois dele, o saldo fica definitivo e corrigir custa caro.</p></div>
+      <div class="card"><div class="ic"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6c0 1.657 3.582 3 8 3s8 -1.343 8 -3s-3.582 -3 -8 -3s-8 1.343 -8 3"/><path d="M4 6v6c0 1.657 3.582 3 8 3s8 -1.343 8 -3v-6"/><path d="M4 12v6c0 1.657 3.582 3 8 3s8 -1.343 8 -3v-6"/></svg></div><h3>Dados espalhados</h3><p>Notas no ERP, na prefeitura, na Receita e no Comitê do IBS, cada um num formato. Planilha não junta tudo isso todo mês.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-soft" id="como-funciona">
+  <div class="wrap">
+    <p class="eyebrow">Como funciona</p>
+    <h2>Seu cálculo, o do governo e a diferença, numa tela só.</h2>
+    <p class="lead">O FBTax roda todos os dias, sem trabalho manual, e deixa o mês pronto para o time fiscal conferir.</p>
+    <div class="steps">
+      <div class="step"><h3>Integra o seu ERP</h3><p>As notas de entrada e saída chegam direto do SAP S/4HANA ou do Oracle, e as NFS-e pelo ambiente nacional.</p></div>
+      <div class="step"><h3>Busca o governo</h3><p>Todo dia, o sistema captura os débitos e créditos que a Receita (CBS) e o Comitê Gestor (IBS) calcularam para a empresa.</p></div>
+      <div class="step"><h3>Compara nota a nota</h3><p>Cruza os dois lados pela chave de cada nota e separa o que está igual, o que diverge e o que só existe de um lado.</p></div>
+      <div class="step"><h3>Aponta e avisa</h3><p>Mostra as diferenças do mês, as notas que explicam cada uma e os prazos do período de ajuste.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="funcionalidades">
+  <div class="wrap">
+    <p class="eyebrow">Funcionalidades</p>
+    <h2>Feito para quem fecha a apuração todo mês.</h2>
+    <p class="lead">Cada número da tela se explica e abre os documentos que o formam.</p>
+    <div class="grid-3">
+      <div class="feat"><span class="n">01</span><div><h3>Apuração do mês</h3><p>Débitos, créditos e saldo a pagar, lado a lado com o que o governo informou, por CBS e por IBS.</p></div></div>
+      <div class="feat"><span class="n">02</span><div><h3>Comparativo nota a nota</h3><p>Um clique abre só as notas em que a sua base e a do governo discordam, da maior diferença para a menor.</p></div></div>
+      <div class="feat"><span class="n">03</span><div><h3>Malha fina antecipada</h3><p>Notas que o governo tem e a empresa não, e o contrário, com quantos dias estão pendentes.</p></div></div>
+      <div class="feat"><span class="n">04</span><div><h3>Crédito e fornecedores</h3><p>Pagamentos a fornecedores cruzados com as notas, para saber quais créditos já podem nascer.</p></div></div>
+      <div class="feat"><span class="n">05</span><div><h3>Fechamento por estimativa</h3><p>Feche o mês pelas notas de compra e acerte depois, quando o governo confirmar o crédito.</p></div></div>
+      <div class="feat"><span class="n">06</span><div><h3>Alertas e relatórios</h3><p>Fases do mês, prazos e dados que o governo deixou de entregar. Relatórios em PDF e Excel com a sua marca.</p></div></div>
+      <div class="feat"><span class="n">07</span><div><h3>Grupos com várias empresas</h3><p>Cada CNPJ com o seu ambiente e os seus dados separados, sem misturar notas entre empresas.</p></div></div>
+      <div class="feat"><span class="n">08</span><div><h3>Honesto com o que falta</h3><p>Dado que o governo ainda não entregou aparece como "aguardando", nunca como zero.</p></div></div>
+      <div class="feat"><span class="n">09</span><div><h3>Segurança</h3><p>Acesso por usuário, login corporativo (SSO), dados sensíveis criptografados e isolamento por empresa.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-soft" id="caso">
+  <div class="wrap">
+    <div class="case">
+      <div>
+        <p class="eyebrow" style="color:var(--primary-mid)">Em produção</p>
+        <h2>Rodando num grande varejo de materiais de construção.</h2>
+        <p>O FBTax está em produção num grande grupo varejista de materiais de construção, integrado ao SAP S/4HANA, conferindo centenas de milhares de notas por mês contra a Receita Federal.</p>
+      </div>
+      <ul>
+        <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Notas importadas direto do SAP S/4HANA, sem planilha</li>
+        <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Captura diária dos débitos e créditos da Receita</li>
+        <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Diferenças apontadas ainda dentro do mês</li>
+        <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Empresas do grupo separadas pelo CNPJ</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="calendario">
+  <div class="wrap">
+    <p class="eyebrow">Calendário da reforma</p>
+    <h2>2026 é o ano de teste. 2027 é para valer.</h2>
+    <p class="lead">A transição vai até 2033. Quem ajusta processos agora chega em 2027 com a conferência rodando.</p>
+    <div class="timeline">
+      <div class="tl now"><span class="pin"></span><b>2026</b><p>Ano de teste: as notas já trazem CBS de 0,9% e IBS de 0,1%.</p></div>
+      <div class="tl"><span class="pin"></span><b>2027</b><p>A CBS passa a valer de verdade e PIS/COFINS acabam. Começa o split payment.</p></div>
+      <div class="tl"><span class="pin"></span><b>2029–2032</b><p>ICMS e ISS diminuem aos poucos; o IBS cresce no lugar.</p></div>
+      <div class="tl"><span class="pin"></span><b>2033</b><p>Só o modelo novo: CBS, IBS e Imposto Seletivo.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-soft" id="planos">
+  <div class="wrap">
+    <p class="eyebrow">Planos</p>
+    <h2>Um plano para cada porte de empresa.</h2>
+    <p class="lead">Todos incluem a implantação do projeto e a operação mensal. O valor depende do porte, do ERP e do número de empresas do grupo.</p>
+    <div class="plans">
+      <div class="plan">
+        <h3>Pequena</h3>
+        <p class="range">Faturamento anual até R$ 100 milhões</p>
+        <ul>
+          <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Apuração do mês CBS e IBS</li>
+          <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Comparativo nota a nota</li>
+          <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Integração com Receita e Comitê do IBS</li>
+          <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Implantação assistida</li>
+        </ul>
+        <p class="price">Fale com um especialista</p>
+        <a class="btn-ghost" href="#contato" data-porte="Pequena (até R$ 100 mi)">Quero conhecer</a>
+      </div>
+      <div class="plan featured">
+        <h3>Média</h3>
+        <p class="range">Faturamento anual de R$ 100 milhões a R$ 1 bilhão</p>
+        <ul>
+          <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Tudo do plano Pequena</li>
+          <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Integração com o ERP (SAP, Oracle)</li>
+          <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Captura de NFS-e no ambiente nacional</li>
+          <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Malha fina e créditos por fornecedor</li>
+        </ul>
+        <p class="price">Fale com um especialista</p>
+        <a class="btn-primary" href="#contato" data-porte="Média (R$ 100 mi a R$ 1 bi)">Quero conhecer</a>
+      </div>
+      <div class="plan">
+        <h3>Grande</h3>
+        <p class="range">Faturamento anual acima de R$ 1 bilhão</p>
+        <ul>
+          <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Tudo do plano Média</li>
+          <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Grupos com várias empresas</li>
+          <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Login corporativo (SSO)</li>
+          <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Projeto sob medida</li>
+        </ul>
+        <p class="price">Sob consulta</p>
+        <a class="btn-ghost" href="#contato" data-porte="Grande (acima de R$ 1 bi)">Falar com especialista</a>
+      </div>
+    </div>
+    <p class="plans-note">Um mês de imposto pago a mais por uma nota que faltou costuma custar mais que a mensalidade.</p>
+  </div>
+</section>
+
+<section id="videos">
+  <div class="wrap">
+    <p class="eyebrow">Vídeos</p>
+    <h2>A reforma explicada sem complicação.</h2>
+    <p class="lead">Uma série curta sobre apuração assistida, crédito da CBS e do IBS e split payment.</p>
+    <!-- Quando os vídeos estiverem no YouTube, trocar este bloco por iframes youtube-nocookie.com. -->
+    <div class="videos-empty">Os primeiros vídeos chegam em breve no YouTube, LinkedIn e Instagram da FBTechIA.</div>
+  </div>
+</section>
+
+<section class="bg-soft" id="faq">
+  <div class="wrap faq">
+    <p class="eyebrow">Dúvidas frequentes</p>
+    <h2>O que as empresas perguntam.</h2>
+    <details><summary>O que é a apuração assistida?</summary><p>É a apuração da CBS e do IBS que o governo monta a partir das notas fiscais eletrônicas e apresenta para a empresa conferir. A Receita Federal cuida da CBS e o Comitê Gestor do IBS (CGIBS) cuida do IBS. A responsabilidade de conferir continua sendo da empresa.</p></details>
+    <details><summary>O FBTax é um sistema do governo?</summary><p>Não. O FBTax é uma solução privada da FBTechIA. Ele se conecta às APIs oficiais da Receita Federal e do Comitê Gestor do IBS com as credenciais da própria empresa, para buscar os dados e comparar com a base da empresa.</p></details>
+    <details><summary>Ele substitui o meu ERP ou o meu contador?</summary><p>Não. O FBTax lê as notas do ERP e os dados do governo e mostra onde estão as diferenças. A decisão sobre o que corrigir continua com o time fiscal e o contador da empresa.</p></details>
+    <details><summary>Com quais ERPs ele se integra?</summary><p>Hoje está em produção com SAP S/4HANA e com bases Oracle. Também importa os XMLs das notas. Outros ERPs são avaliados na demonstração.</p></details>
+    <details><summary>Vale a pena começar em 2026, se é ano de teste?</summary><p>Sim. Em 2026 as notas já trazem CBS e IBS e as APIs do governo já funcionam. É o momento de ajustar cadastros e processos para chegar em 2027, quando a CBS passa a valer, com a conferência rodando.</p></details>
+    <details><summary>O que é o split payment?</summary><p>É a separação do imposto no momento do pagamento: no cartão, no Pix ou no boleto, a parte da CBS e do IBS vai direto para o governo. Começa em 2027 e muda o que a empresa tem a pagar no fim do mês.</p></details>
+    <details><summary>Meus dados ficam seguros?</summary><p>Cada empresa tem o seu ambiente, com dados separados das demais. O acesso é por usuário, com login corporativo (SSO) disponível, e as credenciais sensíveis ficam criptografadas. O tratamento segue a LGPD.</p></details>
+    <details><summary>Quanto custa?</summary><p>Há planos para pequenas, médias e grandes empresas, com um projeto de implantação e uma mensalidade. O valor depende do porte, do ERP e do número de empresas. Peça uma demonstração para receber a proposta.</p></details>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="wrap contact">
+    <div class="contact-info">
+      <p class="eyebrow">Contato</p>
+      <h2>Veja a apuração da sua empresa conferida nota a nota.</h2>
+      <p>Preencha os dados e escolha como prefere enviar. Respondemos com uma demonstração no ambiente de apresentação e uma proposta para o porte da sua empresa.</p>
+      <a class="line" href="https://wa.me/5562983462443?text=Ol%C3%A1!%20Quero%20conhecer%20o%20FBTax." target="_blank" rel="noopener">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"/><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1"/></svg>
+        +55 62 98346-2443 (WhatsApp)</a>
+      <a class="line" href="mailto:contato@fbtechia.com?subject=Quero%20conhecer%20o%20FBTax">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"/><path d="M3 7l9 6l9 -6"/></svg>
+        contato@fbtechia.com</a>
+    </div>
+
+    <form id="leadForm" novalidate>
+      <div><label for="nome">Nome *</label><input id="nome" name="nome" autocomplete="name" required></div>
+      <div><label for="empresa">Empresa *</label><input id="empresa" name="empresa" autocomplete="organization" required></div>
+      <div><label for="cargo">Cargo</label><input id="cargo" name="cargo" autocomplete="organization-title"></div>
+      <div><label for="email">E-mail *</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+      <div><label for="telefone">Telefone / WhatsApp</label><input id="telefone" name="telefone" type="tel" autocomplete="tel"></div>
+      <div><label for="porte">Porte da empresa</label>
+        <select id="porte" name="porte">
+          <option value="">Selecione</option>
+          <option>Pequena (até R$ 100 mi)</option>
+          <option>Média (R$ 100 mi a R$ 1 bi)</option>
+          <option>Grande (acima de R$ 1 bi)</option>
+        </select></div>
+      <div class="full"><label for="erp">ERP que a empresa usa</label><input id="erp" name="erp" placeholder="Ex.: SAP S/4HANA, Oracle, TOTVS"></div>
+      <div class="full"><label for="mensagem">Mensagem</label><textarea id="mensagem" name="mensagem" placeholder="Conte um pouco do que você precisa"></textarea></div>
+      <p class="form-err full" id="formErr" role="alert">Preencha nome, empresa e um e-mail válido.</p>
+      <div class="form-actions full">
+        <button type="submit" class="btn-hero wa" data-canal="whatsapp">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"/></svg>Enviar pelo WhatsApp</button>
+        <button type="submit" class="btn-hero" data-canal="email">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7l9 6l9 -6"/><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"/></svg>Enviar por e-mail</button>
+      </div>
+      <p class="form-msg full">Ao enviar, você concorda com a nossa <a href="termos-e-privacidade.html">política de privacidade</a>. Usamos os dados só para responder ao seu contato.</p>
+    </form>
+  </div>
+</section>
+
+<section>
+  <div class="wrap cta-final">
+    <h2>2027 está chegando. Sua conferência já está rodando?</h2>
+    <p>Agende uma demonstração e veja a apuração assistida conferida nota a nota.</p>
+    <a class="btn-hero" href="#contato">Agendar demonstração</a>
+  </div>
+</section>
+
+<footer>
+  <div class="foot">
+    <div>
+      <a class="logo" href="#topo" style="margin:0"><span class="logo-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11l3 3l8 -8"/><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9"/></svg></span><span class="logo-text">FB<span>Tax</span></span></a>
+      <p class="foot-desc">Conferência da apuração assistida da CBS e do IBS, nota a nota. Um produto da FBTechIA.</p>
+      <!-- TODO: CNPJ e razão social da FBTechIA quando confirmados. -->
+    </div>
+    <div>
+      <h4>Produto</h4>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#funcionalidades">Funcionalidades</a>
+      <a href="#planos">Planos</a>
+      <a href="#faq">Dúvidas</a>
+    </div>
+    <div>
+      <h4>Empresa</h4>
+      <a href="https://www.fbtechia.com" target="_blank" rel="noopener">FBTechIA</a>
+      <a href="#contato">Contato</a>
+      <a href="mailto:contato@fbtechia.com">contato@fbtechia.com</a>
+      <!-- TODO: links do LinkedIn, YouTube e Instagram quando os perfis estiverem no ar. -->
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="termos-e-privacidade.html">Termos e privacidade</a>
+      <a href="https://apuracao.fbtax.cloud">Entrar no sistema</a>
+    </div>
+  </div>
+  <p class="disclaimer">O FBTax é uma solução privada da FBTechIA. Este site não pertence à Receita Federal, ao Comitê Gestor do IBS nem a qualquer órgão público. "Apuração assistida" é o nome do serviço oficial de apuração da CBS e do IBS, ao qual o FBTax se conecta com as credenciais da própria empresa.<br>© 2026 FBTechIA. Feito no Brasil.</p>
+</footer>
+
+<script>
+(function () {
+  // Menu no celular
+  var btn = document.getElementById('menuBtn');
+  var menu = document.getElementById('menu');
+  btn.addEventListener('click', function () {
+    var aberto = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+  });
+  menu.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') { menu.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
+  });
+
+  // Botões dos planos pré-selecionam o porte no formulário
+  document.querySelectorAll('[data-porte]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var sel = document.getElementById('porte');
+      sel.value = a.getAttribute('data-porte');
+    });
+  });
+
+  // Formulário: sem servidor, monta a mensagem e abre o WhatsApp ou o e-mail
+  var WHATSAPP = '5562983462443';
+  var EMAIL = 'contato@fbtechia.com';
+  var form = document.getElementById('leadForm');
+  var erro = document.getElementById('formErr');
+  var canal = 'whatsapp';
+  form.querySelectorAll('button[data-canal]').forEach(function (b) {
+    b.addEventListener('click', function () { canal = b.getAttribute('data-canal'); });
+  });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = function (id) { return (document.getElementById(id).value || '').trim(); };
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('email'));
+    if (!v('nome') || !v('empresa') || !emailOk) { erro.style.display = 'block'; return; }
+    erro.style.display = 'none';
+    var linhas = [
+      'Olá! Quero conhecer o FBTax.',
+      'Nome: ' + v('nome'),
+      'Empresa: ' + v('empresa'),
+      v('cargo') && ('Cargo: ' + v('cargo')),
+      'E-mail: ' + v('email'),
+      v('telefone') && ('Telefone: ' + v('telefone')),
+      v('porte') && ('Porte: ' + v('porte')),
+      v('erp') && ('ERP: ' + v('erp')),
+      v('mensagem') && ('Mensagem: ' + v('mensagem'))
+    ].filter(Boolean).join('\n');
+    if (canal === 'email') {
+      window.location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Quero conhecer o FBTax — ' + v('empresa')) + '&body=' + encodeURIComponent(linhas);
+    } else {
+      window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(linhas), '_blank', 'noopener');
+    }
+  });
+})();
+</script>
+</body>
+</html>
