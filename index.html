@@ -293,6 +293,31 @@ button.feat:focus-visible{outline:2px solid var(--primary-soft);outline-offset:3
 }
 @media (prefers-reduced-motion:reduce){.demo-dlg[open]{animation:none}}
 
+/* Assistente FbTax — chat de vendas (#1 FB_FBTAX_CLOUD) */
+.af-botao{position:fixed;right:20px;bottom:20px;z-index:200;display:flex;align-items:center;gap:10px;padding:13px 18px;border:none;border-radius:999px;cursor:pointer;font:inherit;font-weight:700;font-size:15px;color:var(--ink);background:linear-gradient(135deg,var(--primary),var(--accent));box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 24px rgba(20,184,166,.45)}
+.af-botao svg{width:20px;height:20px}
+.af-painel{position:fixed;right:20px;bottom:88px;z-index:201;width:380px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 120px);display:none;flex-direction:column;border-radius:18px;overflow:hidden;background:#fff;color:#0f172a;box-shadow:0 25px 80px rgba(0,0,0,.5),0 0 0 1px rgba(20,184,166,.35)}
+.af-painel.aberto{display:flex}
+.af-topo{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:linear-gradient(135deg,#0b1620,#16304a);color:#fff}
+.af-topo b{display:block;font-size:15px}
+.af-topo small{color:#5eead4;font-size:11px}
+.af-fechar{background:none;border:none;color:#fff;font-size:22px;cursor:pointer;line-height:1}
+.af-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:#f8fafc}
+.af-msg{max-width:85%;padding:9px 12px;border-radius:14px;font-size:14px;line-height:1.5;white-space:pre-wrap;word-wrap:break-word}
+.af-msg.vis{align-self:flex-end;background:#0d9488;color:#fff;border-bottom-right-radius:4px}
+.af-msg.bot{align-self:flex-start;background:#fff;border:1px solid #e2e8f0;border-bottom-left-radius:4px}
+.af-msg.erro{background:#fef2f2;border-color:#fecaca;color:#991b1b}
+.af-digitando{align-self:flex-start;font-size:12px;color:#64748b}
+.af-zap{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;background:#16a34a;color:#fff;font-weight:700;font-size:14px;text-decoration:none}
+.af-form{display:flex;grid-template-columns:none;gap:8px;padding:10px;margin:0;border:none;border-top:1px solid #e2e8f0;border-radius:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;background:#fff}
+.af-form textarea{flex:1;min-width:0;resize:none;height:44px;min-height:44px;padding:10px 12px;border:1px solid #cbd5e1;border-radius:10px;font:inherit;font-size:14px;color:#0f172a;background:#fff}
+.af-form textarea:focus{outline:none;border-color:#0d9488;box-shadow:0 0 0 3px rgba(13,148,136,.15)}
+.af-form button{border:none;border-radius:10px;padding:0 14px;font-weight:700;color:#fff;background:#0d9488;cursor:pointer}
+.af-form button:disabled{opacity:.5;cursor:default}
+.af-aviso{padding:0 12px 8px;font-size:10.5px;color:#64748b;background:#fff}
+.af-aviso a{color:#0d9488}
+@media (max-width:760px){.af-botao span{display:none}.af-botao{padding:14px}.af-painel{right:16px;bottom:80px;height:calc(100vh - 110px)}}
+
 /* faq */
 .faq{max-width:860px}
 details{border-radius:12px;padding:0 20px;margin-bottom:12px;transition:border-color .3s var(--ease),box-shadow .3s var(--ease)}
@@ -789,6 +814,24 @@ footer .logo-text{color:#fff}
   <p class="disclaimer">O FBTax é uma solução privada da FBTechIA. Este site não pertence à Receita Federal, ao Comitê Gestor do IBS nem a qualquer órgão público. "Apuração assistida" é o nome do serviço oficial de apuração da CBS e do IBS, ao qual o FBTax se conecta com as credenciais da própria empresa.<br>© 2026 FBTechIA · CNPJ 38.149.716/0001-28. Feito no Brasil.</p>
 </footer>
 
+<!-- Assistente FbTax: chat de vendas (backend em fbtax.cloud /api/vendas/chat) -->
+<button type="button" class="af-botao" id="af-botao" aria-controls="af-painel" aria-expanded="false">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  <span>Fale com o Assistente FbTax</span>
+</button>
+<div class="af-painel" id="af-painel" role="dialog" aria-label="Assistente FbTax">
+  <div class="af-topo">
+    <div><b>Assistente FbTax</b><small>assistente virtual · tira dúvidas e agenda demonstração</small></div>
+    <button type="button" class="af-fechar" id="af-fechar" aria-label="Fechar">×</button>
+  </div>
+  <div class="af-msgs" id="af-msgs" aria-live="polite"></div>
+  <form class="af-form" id="af-form">
+    <textarea id="af-texto" maxlength="600" placeholder="Escreva sua dúvida…" aria-label="Sua mensagem"></textarea>
+    <button type="submit" id="af-enviar">Enviar</button>
+  </form>
+  <p class="af-aviso">Assistente virtual. Não informe senhas. Ao deixar seu contato, você autoriza a FBTechIA a falar com você (<a href="termos-e-privacidade.html" target="_blank">termos e privacidade</a>).</p>
+</div>
+
 <script>
 (function () {
   // Menu no celular
@@ -873,6 +916,71 @@ footer .logo-text{color:#fff}
     });
     dlg.querySelector('.dm-close').addEventListener('click', function () { dlg.close(); });
     dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+  })();
+
+  // Assistente FbTax — chat de vendas
+  (function () {
+    var API = 'https://fbtax.cloud/api/vendas/chat';
+    var botao = document.getElementById('af-botao'), painel = document.getElementById('af-painel');
+    var msgs = document.getElementById('af-msgs'), form = document.getElementById('af-form');
+    var texto = document.getElementById('af-texto'), enviar = document.getElementById('af-enviar');
+    if (!botao || !painel) return;
+    var CHAVE = 'af_sessao', sessao = '', ocupado = false, iniciado = false, zapMostrado = false;
+    try { sessao = localStorage.getItem(CHAVE) || ''; } catch (e) {}
+    function origem() {
+      var p = new URLSearchParams(location.search), partes = [];
+      ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (k) { if (p.get(k)) partes.push(k + '=' + p.get(k)); });
+      if (document.referrer) partes.push('ref=' + document.referrer.split('/')[2]);
+      return partes.join(' ') || 'site';
+    }
+    function escapar(t) { return t.replace(/[&<>"']/g, function (c) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]; }); }
+    function bolha(t, classe) {
+      var d = document.createElement('div');
+      d.className = 'af-msg ' + classe;
+      d.innerHTML = escapar(t).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
+    }
+    function botaoZap(url) {
+      if (zapMostrado || !url) return;
+      zapMostrado = true;
+      var a = document.createElement('a');
+      a.className = 'af-zap'; a.href = url; a.target = '_blank'; a.rel = 'noopener';
+      a.textContent = 'Falar com um especialista no WhatsApp';
+      msgs.appendChild(a); msgs.scrollTop = msgs.scrollHeight;
+    }
+    function abrir() {
+      painel.classList.add('aberto'); botao.setAttribute('aria-expanded', 'true');
+      if (!iniciado) {
+        iniciado = true;
+        bolha('Olá! Sou o Assistente FbTax, assistente virtual da FBTechIA. Posso explicar como o FBTax confere a apuração assistida da CBS e do IBS e, se fizer sentido, agendar uma demonstração. Como posso ajudar?', 'bot');
+      }
+      setTimeout(function () { texto.focus(); }, 50);
+    }
+    function fechar() { painel.classList.remove('aberto'); botao.setAttribute('aria-expanded', 'false'); }
+    botao.addEventListener('click', function () { painel.classList.contains('aberto') ? fechar() : abrir(); });
+    document.getElementById('af-fechar').addEventListener('click', fechar);
+    texto.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); } });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var t = texto.value.trim();
+      if (!t || ocupado) return;
+      ocupado = true; enviar.disabled = true; texto.value = '';
+      bolha(t, 'vis');
+      var dig = document.createElement('div'); dig.className = 'af-digitando'; dig.textContent = 'Assistente FbTax está digitando…';
+      msgs.appendChild(dig); msgs.scrollTop = msgs.scrollHeight;
+      fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sessao: sessao, mensagem: t, origem: origem() }) })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+        .then(function (x) {
+          dig.remove();
+          if (!x.ok) { bolha((x.j && x.j.error) || 'Não consegui responder agora. Tente de novo.', 'bot erro'); return; }
+          if (x.j.sessao) { sessao = x.j.sessao; try { localStorage.setItem(CHAVE, sessao); } catch (e) {} }
+          bolha(x.j.resposta || '', 'bot');
+          botaoZap(x.j.whatsapp_url);
+        })
+        .catch(function () { dig.remove(); bolha('Sem conexão com o assistente agora. Você pode falar com a equipe pelo WhatsApp.', 'bot erro'); botaoZap('https://wa.me/5562983462443'); })
+        .then(function () { ocupado = false; enviar.disabled = false; texto.focus(); });
+    });
   })();
 </script>
 </body>
