@@ -506,7 +506,7 @@ footer .logo-text{color:#fff}
       <button type="button" class="feat" data-demo="4" aria-haspopup="dialog"><span class="n">04</span><div><h3>Crédito e fornecedores</h3><p>Pagamentos a fornecedores cruzados com as notas, para saber quais créditos já podem nascer.</p><span class="ver">Ver exemplo →</span></div></button>
       <button type="button" class="feat" data-demo="5" aria-haspopup="dialog"><span class="n">05</span><div><h3>Fechamento por estimativa</h3><p>Feche o mês pelas notas de compra e acerte depois, quando o governo confirmar o crédito.</p><span class="ver">Ver exemplo →</span></div></button>
       <button type="button" class="feat" data-demo="6" aria-haspopup="dialog"><span class="n">06</span><div><h3>Alertas e relatórios</h3><p>Fases do mês, prazos e dados que o governo deixou de entregar. Relatórios em PDF e Excel com a sua marca.</p><span class="ver">Ver exemplo →</span></div></button>
-      <button type="button" class="feat" data-demo="7" aria-haspopup="dialog"><span class="n">07</span><div><h3>Grupos com várias empresas</h3><p>Cada CNPJ com o seu ambiente e os seus dados separados, sem misturar notas entre empresas.</p><span class="ver">Ver exemplo →</span></div></button>
+      <button type="button" class="feat" data-demo="7" aria-haspopup="dialog"><span class="n">07</span><div><h3>Grupos com várias empresas</h3><p>Cada empresa do grupo (raiz do CNPJ) com o seu ambiente, as filiais consolidadas na matriz e nenhuma nota misturada entre empresas.</p><span class="ver">Ver exemplo →</span></div></button>
       <button type="button" class="feat" data-demo="8" aria-haspopup="dialog"><span class="n">08</span><div><h3>Honesto com o que falta</h3><p>Dado que o governo ainda não entregou aparece como "aguardando", nunca como zero.</p><span class="ver">Ver exemplo →</span></div></button>
       <button type="button" class="feat" data-demo="9" aria-haspopup="dialog"><span class="n">09</span><div><h3>Segurança</h3><p>Acesso por usuário, login corporativo (SSO), dados sensíveis criptografados e isolamento por empresa.</p><span class="ver">Ver exemplo →</span></div></button>
     </div>
@@ -733,12 +733,12 @@ footer .logo-text{color:#fff}
 </ul>
 <div class="dm-actions"><span class="dm-btn">Exportar PDF</span><span class="dm-btn">Exportar Excel</span></div></template>
 <template id="demo-7"><b class="dm-title">Grupo Demonstração · 3 empresas</b>
-<table class="demo-table"><thead><tr><th>Empresa</th><th class="hide-sm">CNPJ</th><th>Notas no mês</th><th>Ambiente</th></tr></thead><tbody>
-<tr><td>Demonstração Matriz</td><td class="hide-sm">00.000.001/0001-00</td><td>182.440</td><td><span class="pill p-ok">separado</span></td></tr>
-<tr><td>Demonstração Filial Norte</td><td class="hide-sm">00.000.001/0002-81</td><td>64.105</td><td><span class="pill p-ok">separado</span></td></tr>
-<tr><td>Demonstração Serviços</td><td class="hide-sm">00.000.002/0001-90</td><td>3.912</td><td><span class="pill p-ok">separado</span></td></tr>
+<table class="demo-table"><thead><tr><th>Empresa</th><th class="hide-sm">CNPJ (matriz)</th><th class="hide-sm">Filiais</th><th>Notas no mês</th><th>Ambiente</th></tr></thead><tbody>
+<tr><td>Demonstração Comércio Ltda</td><td class="hide-sm">11.111.111/0001-91</td><td class="hide-sm">12</td><td>246.545</td><td><span class="pill p-ok">separado</span></td></tr>
+<tr><td>Demonstração Indústria S.A.</td><td class="hide-sm">22.222.222/0001-82</td><td class="hide-sm">3</td><td>58.210</td><td><span class="pill p-ok">separado</span></td></tr>
+<tr><td>Demonstração Serviços Ltda</td><td class="hide-sm">33.333.333/0001-73</td><td class="hide-sm">—</td><td>3.912</td><td><span class="pill p-ok">separado</span></td></tr>
 </tbody></table>
-<p class="dm-foot">Cada usuário vê só as empresas a que tem acesso. Nenhuma nota passa de um CNPJ para outro.</p></template>
+<p class="dm-foot">A CBS e o IBS são apurados por empresa (raiz do CNPJ): as filiais somam na matriz. Cada empresa do grupo tem o seu ambiente, e cada usuário vê só as empresas a que tem acesso.</p></template>
 <template id="demo-8"><b class="dm-title">Débitos do mês · por dia de registro</b>
 <table class="demo-table"><thead><tr><th>Dia</th><th>Própria (XMLs)</th><th>Governo</th></tr></thead><tbody>
 <tr><td>18/11</td><td>R$ 41.208,10</td><td>R$ 41.208,10</td></tr>
@@ -752,7 +752,7 @@ footer .logo-text{color:#fff}
 <li><b>Login corporativo (SSO)</b><span><span class="pill p-ok">ativo</span></span></li>
 <li><b>Usuários e perfis por empresa</b><span><span class="pill p-ok">12 usuários</span></span></li>
 <li><b>Certificados e credenciais do governo</b><span><span class="pill p-ok">criptografados</span></span></li>
-<li><b>Isolamento entre empresas</b><span><span class="pill p-ok">por CNPJ</span></span></li>
+<li><b>Isolamento entre empresas</b><span><span class="pill p-ok">por raiz do CNPJ</span></span></li>
 <li><b>Sessão</b><span><span class="pill p-info">expira em 30 min</span></span></li>
 </ul>
 <p class="dm-foot">As credenciais da Receita e do Comitê Gestor são da própria empresa e ficam guardadas criptografadas.</p></template>
