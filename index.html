@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0a1a2b">
+<meta name="theme-color" content="#16304a">
 <meta name="color-scheme" content="dark">
 <meta name="author" content="FBTechIA">
 <title>FBTax — Apuração Assistida da CBS e do IBS conferida nota a nota</title>
@@ -42,10 +42,10 @@
    prefers-reduced-motion. */
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0a1a2b;          /* fundo da página */
-  --bg-2:#0b1620;        /* início do gradiente */
-  --surface:#0e1a2a;     /* superfície de card */
-  --elevated:#142033;    /* painel elevado */
+  --bg:#16304a;          /* fundo da página */
+  --bg-2:#132a42;        /* início do gradiente */
+  --surface:#1b3550;     /* superfície de card */
+  --elevated:#22405e;    /* painel elevado */
   --primary:#14b8a6;     /* teal-500 */
   --primary-dark:#0d9488;
   --primary-soft:#5eead4; /* teal-300 */
@@ -69,7 +69,7 @@ a{color:var(--primary-soft)}
 svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
 
 /* ── efeitos ── */
-.glass{background:rgba(14,26,42,.55);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--border)}
+.glass{background:rgba(27,53,80,.55);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--border)}
 .text-glow{text-shadow:0 0 20px rgba(20,184,166,.4)}
 .ambient-light,.ambient-light-2{position:absolute;border-radius:9999px;pointer-events:none;z-index:0}
 .ambient-light{width:300px;height:300px;background:radial-gradient(circle,rgba(20,184,166,.18) 0%,transparent 70%);filter:blur(40px);animation:ambientMove 8s ease-in-out infinite alternate}
@@ -82,12 +82,12 @@ svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .btn-primary:hover::before,.btn-hero:hover::before{left:100%}
 .btn-primary:hover,.btn-hero:hover{transform:translateY(-2px)}
 /* cartões de vidro com brilho no hover */
-.card,.step,.feat,details,form{background:rgba(14,26,42,.6);border:1px solid var(--border);box-shadow:0 8px 32px rgba(0,0,0,.3),0 0 0 1px rgba(255,255,255,.03)}
+.card,.step,.feat,details,form{background:rgba(27,53,80,.6);border:1px solid var(--border);box-shadow:0 8px 32px rgba(0,0,0,.3),0 0 0 1px rgba(255,255,255,.03)}
 .card,.step,.feat{transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s var(--ease)}
 .card:hover,.step:hover,.feat:hover{transform:translateY(-6px);border-color:var(--border-teal);box-shadow:0 25px 80px rgba(0,0,0,.4),0 0 0 1px rgba(255,255,255,.08),0 0 60px rgba(20,184,166,.2)}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,26,43,.72);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);padding:0 5%}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(22,48,74,.72);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);padding:0 5%}
 .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
 .logo-img{width:40px;height:auto;border-radius:9px;display:block;box-shadow:0 0 20px rgba(20,184,166,.25)}
@@ -121,7 +121,7 @@ h1 span{background:linear-gradient(90deg,var(--primary-soft),var(--accent));-web
 .hero-proof svg{width:16px;height:16px;color:var(--primary-soft)}
 
 /* ── MOCKUP ── tela clara (fundo branco) dentro do quadro escuro com brilho */
-.mockup-wrap{background:linear-gradient(180deg,#16263a,#0e1a2a);border:1px solid var(--border-teal);border-radius:16px;padding:10px 10px 12px;box-shadow:0 25px 80px rgba(0,0,0,.5),0 0 60px rgba(20,184,166,.22),inset 0 1px 0 rgba(255,255,255,.06);transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.mockup-wrap{background:linear-gradient(180deg,#24425f,#1b3550);border:1px solid var(--border-teal);border-radius:16px;padding:10px 10px 12px;box-shadow:0 25px 80px rgba(0,0,0,.5),0 0 60px rgba(20,184,166,.22),inset 0 1px 0 rgba(255,255,255,.06);transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
 .mockup-wrap:hover{transform:translateY(-6px);box-shadow:0 30px 90px rgba(0,0,0,.55),0 0 80px rgba(20,184,166,.32),inset 0 1px 0 rgba(255,255,255,.06)}
 .mockup-bar{display:flex;align-items:center;gap:6px;margin:2px 4px 10px}
 .dot{width:10px;height:10px;border-radius:50%}
@@ -198,7 +198,7 @@ h2{font-size:38px;font-weight:800;letter-spacing:-1px;line-height:1.15;color:#ff
 .tl p{font-size:14px;color:var(--gray);line-height:1.55}
 
 /* planos — texto em destaque, sem caixas por porte */
-.plans-panel{position:relative;overflow:hidden;text-align:center;max-width:980px;margin:0 auto;padding:64px 48px;border-radius:24px;background:linear-gradient(135deg,rgba(20,184,166,.10),rgba(14,26,42,.7) 45%,rgba(6,182,212,.08));border:1px solid var(--border-teal);box-shadow:0 25px 80px rgba(0,0,0,.4),0 0 60px rgba(20,184,166,.18);backdrop-filter:blur(20px)}
+.plans-panel{position:relative;overflow:hidden;text-align:center;max-width:980px;margin:0 auto;padding:64px 48px;border-radius:24px;background:linear-gradient(135deg,rgba(20,184,166,.10),rgba(27,53,80,.7) 45%,rgba(6,182,212,.08));border:1px solid var(--border-teal);box-shadow:0 25px 80px rgba(0,0,0,.4),0 0 60px rgba(20,184,166,.18);backdrop-filter:blur(20px)}
 .plans-panel>*:not(.ambient-light):not(.ambient-light-2){position:relative;z-index:1}
 .plans-panel h2{font-size:46px;letter-spacing:-1.3px;margin-bottom:22px}
 .plans-panel h2 span{background:linear-gradient(90deg,var(--primary-soft),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -256,7 +256,7 @@ button.feat:focus-visible{outline:2px solid var(--primary-soft);outline-offset:3
 .feat .ver{display:inline-block;margin-top:10px;font-size:13px;font-weight:700;color:var(--primary-soft);opacity:.75;transition:opacity .2s,transform .2s}
 .feat:hover .ver{opacity:1;transform:translateX(3px)}
 .demo-dlg{border:0;padding:0;background:transparent;width:min(860px,calc(100% - 32px));max-height:calc(100% - 32px);margin:auto;overflow:visible;color:var(--text)}
-.demo-dlg::backdrop{background:rgba(5,12,20,.72);backdrop-filter:blur(6px)}
+.demo-dlg::backdrop{background:rgba(10,22,36,.72);backdrop-filter:blur(6px)}
 .demo-dlg[open]{animation:dmIn .25s var(--ease)}
 @keyframes dmIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
 .demo-dlg .mockup-wrap:hover{transform:none}
@@ -313,7 +313,7 @@ details p{padding:0 0 18px;color:var(--text-2);font-size:15px;line-height:1.7}
 form{border-radius:16px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:14px;backdrop-filter:blur(20px)}
 form .full{grid-column:1/-1}
 label{display:block;font-size:13px;font-weight:600;color:var(--text-2);margin-bottom:6px}
-input,select,textarea{width:100%;font:inherit;font-size:15px;padding:11px 12px;border:1px solid rgba(148,163,184,.25);border-radius:8px;background:rgba(10,26,43,.8);color:var(--text);transition:border-color .2s,box-shadow .2s}
+input,select,textarea{width:100%;font:inherit;font-size:15px;padding:11px 12px;border:1px solid rgba(148,163,184,.25);border-radius:8px;background:rgba(22,48,74,.8);color:var(--text);transition:border-color .2s,box-shadow .2s}
 select option{background:var(--elevated);color:var(--text)}
 input::placeholder,textarea::placeholder{color:#64748b}
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(20,184,166,.2),0 0 20px rgba(20,184,166,.2)}
@@ -332,7 +332,7 @@ textarea{min-height:96px;resize:vertical}
 .cta-final p{color:var(--text-2);font-size:17px;margin-bottom:28px}
 
 /* rodapé */
-footer{background:rgba(6,14,24,.85);color:var(--gray);padding:56px 5% 32px;border-top:1px solid var(--border-teal);box-shadow:0 -1px 40px rgba(20,184,166,.08)}
+footer{background:rgba(15,33,52,.9);color:var(--gray);padding:56px 5% 32px;border-top:1px solid var(--border-teal);box-shadow:0 -1px 40px rgba(20,184,166,.08)}
 .foot-logo{width:72px;height:auto;border-radius:12px;display:block;margin-bottom:12px;box-shadow:0 0 24px rgba(20,184,166,.25)}
 .foot-company{font-size:13px;line-height:1.7;margin-top:12px;color:var(--gray)}
 .foot{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px}
@@ -352,7 +352,7 @@ footer .logo-text{color:#fff}
   .foot{grid-template-columns:1fr 1fr}
 }
 @media (max-width:760px){
-  .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:rgba(10,26,43,.97);backdrop-filter:blur(20px);flex-direction:column;align-items:flex-start;gap:0;border-bottom:1px solid var(--border);padding:8px 5% 16px}
+  .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:rgba(22,48,74,.97);backdrop-filter:blur(20px);flex-direction:column;align-items:flex-start;gap:0;border-bottom:1px solid var(--border);padding:8px 5% 16px}
   .nav-links.open{display:flex}
   .nav-links a{padding:12px 0;font-size:16px;width:100%}
   .menu-btn{display:flex}
