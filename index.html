@@ -310,13 +310,20 @@ button.feat:focus-visible{outline:2px solid var(--primary-soft);outline-offset:3
 .af-digitando{align-self:flex-start;font-size:12px;color:#64748b}
 .af-zap{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;background:#16a34a;color:#fff;font-weight:700;font-size:14px;text-decoration:none}
 .af-form{display:flex;grid-template-columns:none;gap:8px;padding:10px;margin:0;border:none;border-top:1px solid #e2e8f0;border-radius:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;background:#fff}
-.af-form textarea{flex:1;min-width:0;resize:none;height:44px;min-height:44px;padding:10px 12px;border:1px solid #cbd5e1;border-radius:10px;font:inherit;font-size:14px;color:#0f172a;background:#fff}
+.af-form textarea{flex:1;min-width:0;resize:none;height:44px;min-height:44px;padding:10px 12px;border:1px solid #cbd5e1;border-radius:10px;font:inherit;font-size:16px;color:#0f172a;background:#fff}
 .af-form textarea:focus{outline:none;border-color:#0d9488;box-shadow:0 0 0 3px rgba(13,148,136,.15)}
 .af-form button{border:none;border-radius:10px;padding:0 14px;font-weight:700;color:#fff;background:#0d9488;cursor:pointer}
 .af-form button:disabled{opacity:.5;cursor:default}
 .af-aviso{padding:0 12px 8px;font-size:10.5px;color:#64748b;background:#fff}
 .af-aviso a{color:#0d9488}
-@media (max-width:760px){.af-botao span{display:none}.af-botao{padding:14px}.af-painel{right:16px;bottom:80px;height:calc(100vh - 110px)}}
+.af-convite{position:fixed;right:20px;bottom:84px;z-index:199;max-width:260px;padding:12px 34px 12px 14px;border-radius:14px;background:#fff;color:#0f172a;font-size:14px;line-height:1.45;box-shadow:0 12px 36px rgba(0,0,0,.4);cursor:pointer;display:none}
+.af-convite.on{display:block;animation:afIn .35s ease}
+.af-convite b{color:#0d9488}
+.af-convite button{position:absolute;top:4px;right:6px;background:none;border:none;font-size:18px;color:#64748b;cursor:pointer;line-height:1;padding:4px}
+@keyframes afIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.af-chamar{display:inline-flex;align-items:center;gap:10px;margin-top:8px;padding:12px 18px;border:none;border-radius:12px;cursor:pointer;font:inherit;font-weight:700;font-size:15px;color:var(--ink);background:linear-gradient(135deg,var(--primary),var(--accent))}
+@media (max-width:760px){.af-botao{right:16px;bottom:16px;padding:12px 16px;font-size:14px}.af-botao .af-longo{display:none}.af-convite{right:16px;bottom:76px}.af-painel{right:16px;bottom:80px;height:calc(100vh - 110px)}}
+@media (min-width:761px){.af-botao .af-curto{display:none}}
 
 /* faq */
 .faq{max-width:860px}
@@ -661,6 +668,9 @@ footer .logo-text{color:#fff}
       <a class="line" href="mailto:contato@fbtechia.com?subject=Quero%20conhecer%20o%20FBTax">
         <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"/><path d="M3 7l9 6l9 -6"/></svg>
         contato@fbtechia.com</a>
+      <button type="button" class="af-chamar" data-af-abrir>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Prefere conversar agora? Fale com o Assistente FbTax</button>
     </div>
 
     <form id="leadForm" novalidate>
@@ -817,8 +827,9 @@ footer .logo-text{color:#fff}
 <!-- Assistente FbTax: chat de vendas (backend em fbtax.cloud /api/vendas/chat) -->
 <button type="button" class="af-botao" id="af-botao" aria-controls="af-painel" aria-expanded="false">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-  <span>Fale com o Assistente FbTax</span>
+  <span class="af-longo">Fale com o Assistente FbTax</span><span class="af-curto">Assistente FbTax</span>
 </button>
+<div class="af-convite" id="af-convite" role="status"><button type="button" aria-label="Fechar convite">×</button>Dúvidas sobre a apuração da <b>CBS e do IBS</b>? Pergunte ao Assistente FbTax.</div>
 <div class="af-painel" id="af-painel" role="dialog" aria-label="Assistente FbTax">
   <div class="af-topo">
     <div><b>Assistente FbTax</b><small>assistente virtual · tira dúvidas e agenda demonstração</small></div>
@@ -958,6 +969,15 @@ footer .logo-text{color:#fff}
     }
     function fechar() { painel.classList.remove('aberto'); botao.setAttribute('aria-expanded', 'false'); }
     botao.addEventListener('click', function () { painel.classList.contains('aberto') ? fechar() : abrir(); });
+    document.querySelectorAll('[data-af-abrir]').forEach(function (b) { b.addEventListener('click', function () { esconderConvite(); abrir(); }); });
+    var convite = document.getElementById('af-convite'), CONV = 'af_convite_visto';
+    function esconderConvite() { if (convite) convite.classList.remove('on'); try { sessionStorage.setItem(CONV, '1'); } catch (e) {} }
+    if (convite) {
+      var visto = false; try { visto = !!sessionStorage.getItem(CONV); } catch (e) {}
+      if (!visto) setTimeout(function () { if (!painel.classList.contains('aberto')) convite.classList.add('on'); }, 6000);
+      convite.addEventListener('click', function (e) { esconderConvite(); if (e.target.tagName !== 'BUTTON') abrir(); });
+      botao.addEventListener('click', esconderConvite);
+    }
     document.getElementById('af-fechar').addEventListener('click', fechar);
     texto.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); } });
     form.addEventListener('submit', function (e) {
